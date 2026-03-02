@@ -2,8 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+// ── Auth Views (guest only) ──────────────────────────────────────────────────
+Route::middleware('guest')->group(function () {
+    Route::get('/login', fn() => inertia('Auth::Login'))->name('login');
+    Route::get('/register', fn() => inertia('Auth::Register'))->name('register');
+    Route::get('/forgot-password', fn() => inertia('Auth::ForgotPassword'))->name('password.request');
+});
+
+// ── Public ───────────────────────────────────────────────────────────────────
 Route::get('/', \App\Modules\Public\Presentation\Controllers\HomeController::class)
     ->name('home');
+
 
 Route::get('/test-blade', function () {
     return 'Blade is working';

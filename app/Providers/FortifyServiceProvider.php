@@ -46,11 +46,13 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         // Configuración Headless para Fortify
-        Fortify::loginView(fn() => response()->json(['message' => 'Login required'], 401));
-        Fortify::registerView(fn() => response()->json(['message' => 'Registration required'], 401));
+        Fortify::loginView(fn() => inertia('Auth::Login'));
+        Fortify::registerView(fn() => inertia('Auth::Register'));
+        Fortify::requestPasswordResetLinkView(fn() => inertia('Auth::ForgotPassword'));
+        Fortify::resetPasswordView(fn($request) => inertia('Auth::ResetPassword', ['token' => $request->route('token'), 'email' => $request->email]));
         Fortify::verifyEmailView(fn() => response()->json(['message' => 'Email verification required'], 401));
-        Fortify::resetPasswordView(fn($request) => response()->json(['message' => 'Password reset required'], 401));
         Fortify::confirmPasswordView(fn() => response()->json(['message' => 'Password confirmation required'], 401));
+
         Fortify::twoFactorChallengeView(fn() => response()->json(['message' => '2FA challenge required'], 401));
     }
 }

@@ -28,6 +28,7 @@ class User extends Authenticatable
     protected $fillable = [
         'company_id',
         'name',
+        'company_name',   // Nombre comercial — perfil de usuario (single-tenant)
         'email',
         'password',
     ];

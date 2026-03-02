@@ -3,7 +3,7 @@
 namespace App\Domains\Auth\Actions;
 
 use App\Modules\Auth\Domain\Models\User;
-use Illuminate\Support\Facades\DB;
+use App\Modules\Company\Domain\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -16,40 +16,33 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
+     * Single-Tenant: el campo company_name se guarda como dato de perfil del usuario.
+     * El usuario se asigna a la Company existente del sistema (la única).
+     *
      * @param  array<string, string>  $input
      */
     public function create(array $input): User
     {
         Validator::make($input, [
-            'company_name' => ['required_without:company_id', 'string', 'max:255'],
-            'company_id' => ['nullable', 'uuid', 'exists:companies,id'],
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
-            'password' => $this->passwordRules(),
+            'name'         => ['required', 'string', 'max:255'],
+            'company_name' => ['nullable', 'string', 'max:255'],
+            'email'        => ['required', 'string', 'email', 'max:255', Rule::unique(User::class)],
+            'password'     => $this->passwordRules(),
         ])->validate();
 
-        return DB::transaction(function () use ($input) {
-            $companyId = $input['company_id'] ?? null;
+        // ── Single-Tenant: obtener la única Company del sistema ──────────────
+        // Si no existe ninguna aún, la creamos con el nombre que ingresó el usuario
+        // (o un valor por defecto). En multi-tenant esto se reemplazaría por elegir/crear tenant.
+        $company = Company::first() ?? Company::create([
+            'name' => $input['company_name'] ?? config('app.name', 'My Agency'),
+        ]);
 
-            if (!$companyId && isset($input['company_name'])) {
-                $company = (new \App\Modules\Company\Application\Actions\CreateCompanyAction(
-                    name: $input['company_name']
-                ))->execute();
-                $companyId = $company->id;
-            }
-
-            return User::create([
-                'company_id' => $companyId,
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'password' => Hash::make($input['password']),
-            ]);
-        });
+        return User::create([
+            'company_id'   => $company->id,
+            'name'         => $input['name'],
+            'company_name' => $input['company_name'] ?? null,  // Perfil del usuario
+            'email'        => $input['email'],
+            'password'     => Hash::make($input['password']),
+        ]);
     }
 }

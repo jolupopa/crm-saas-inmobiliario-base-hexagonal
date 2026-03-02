@@ -18,6 +18,10 @@ interface Props {
     amenities: Amenity[];
 }
 
+const inputClass = "w-full rounded-xl border border-[#333333] bg-[#1a1a1a] px-4 py-3 text-sm text-white placeholder-[#555555] transition-all focus:border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20 focus:outline-none";
+const labelClass = "block text-xs font-bold uppercase tracking-widest text-[#A0A0A0] mb-2";
+const sectionClass = "rounded-2xl border border-[#333333] bg-[#242424] p-7";
+
 export default function Create({ ubigeos, amenities }: Props) {
     const { data, setData, post, processing, errors } = useForm({
         title: '',
@@ -53,51 +57,62 @@ export default function Create({ ubigeos, amenities }: Props) {
 
     return (
         <AdminLayout>
-            <Head title="Publicar Propiedad" />
+            <Head title="Nueva Propiedad — EstateManager" />
 
             <div className="mx-auto max-w-4xl">
+                {/* Header */}
                 <div className="mb-8 flex items-center gap-4">
-                    <Link href="/propiedades" className="rounded-xl bg-white p-2 text-slate-400 shadow-sm transition-colors hover:text-indigo-600">
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <Link
+                        href="/propiedades"
+                        className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#333333] bg-[#1a1a1a] text-[#A0A0A0] transition-all hover:border-[#FACC15]/30 hover:text-[#FACC15]"
+                    >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                     </Link>
-                    <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">Nueva Propiedad</h1>
+                    <div>
+                        <h1 className="text-3xl font-extrabold tracking-tight text-white">List a Property</h1>
+                        <p className="text-sm text-[#A0A0A0] mt-0.5">Add a premium asset to your portfolio.</p>
+                    </div>
                 </div>
 
                 <form onSubmit={submit} className="space-y-6">
-                    <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                    {/* Section 1: Basic Info */}
+                    <div className={sectionClass}>
+                        <h2 className="text-xs font-bold uppercase tracking-widest text-[#FACC15] mb-6">
+                            Información General
+                        </h2>
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div className="sm:col-span-2">
-                                <label className="mb-2 block text-sm font-bold text-slate-700">Título de la Publicación</label>
+                                <label className={labelClass}>Título de la Publicación</label>
                                 <input
                                     type="text"
                                     value={data.title}
                                     onChange={e => setData('title', e.target.value)}
-                                    className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                                    className={inputClass}
                                     placeholder="Ej: Penthouse con vista al mar en Miraflores"
                                     required
                                 />
-                                {errors.title && <p className="mt-1 text-xs text-red-500">{errors.title}</p>}
+                                {errors.title && <p className="mt-1 text-xs text-red-400">{errors.title}</p>}
                             </div>
 
                             <div className="sm:col-span-2">
-                                <label className="mb-2 block text-sm font-bold text-slate-700">Descripción</label>
+                                <label className={labelClass}>Descripción</label>
                                 <textarea
                                     value={data.description}
                                     onChange={e => setData('description', e.target.value)}
                                     rows={4}
-                                    className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
-                                    placeholder="Describe las características principales..."
+                                    className={inputClass}
+                                    placeholder="Describe las características premium de la propiedad..."
                                 />
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-bold text-slate-700">Tipo de Propiedad</label>
+                                <label className={labelClass}>Tipo de Propiedad</label>
                                 <select
                                     value={data.type}
                                     onChange={e => setData('type', e.target.value)}
-                                    className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                                    className={inputClass}
                                 >
                                     <option value="apartment">Departamento</option>
                                     <option value="house">Casa</option>
@@ -107,11 +122,11 @@ export default function Create({ ubigeos, amenities }: Props) {
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-bold text-slate-700">Operación</label>
+                                <label className={labelClass}>Operación</label>
                                 <select
                                     value={data.operation}
                                     onChange={e => setData('operation', e.target.value)}
-                                    className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                                    className={inputClass}
                                 >
                                     <option value="sale">Venta</option>
                                     <option value="rent">Alquiler</option>
@@ -120,21 +135,23 @@ export default function Create({ ubigeos, amenities }: Props) {
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="mb-2 block text-sm font-bold text-slate-700">Precio</label>
+                                    <label className={labelClass}>Precio</label>
                                     <input
                                         type="number"
                                         value={data.price}
                                         onChange={e => setData('price', e.target.value)}
-                                        className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                                        className={inputClass}
+                                        placeholder="450000"
                                         required
                                     />
+                                    {errors.price && <p className="mt-1 text-xs text-red-400">{errors.price}</p>}
                                 </div>
                                 <div>
-                                    <label className="mb-2 block text-sm font-bold text-slate-700">Moneda</label>
+                                    <label className={labelClass}>Moneda</label>
                                     <select
                                         value={data.currency}
                                         onChange={e => setData('currency', e.target.value)}
-                                        className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                                        className={inputClass}
                                     >
                                         <option value="USD">USD</option>
                                         <option value="PEN">PEN</option>
@@ -143,75 +160,95 @@ export default function Create({ ubigeos, amenities }: Props) {
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-bold text-slate-700">Área Total (m²)</label>
+                                <label className={labelClass}>Área Total (m²)</label>
                                 <input
                                     type="number"
                                     value={data.area_total}
                                     onChange={e => setData('area_total', e.target.value)}
-                                    className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
+                                    className={inputClass}
+                                    placeholder="120"
                                     required
                                 />
                             </div>
                         </div>
+                    </div>
 
-                        <div className="mt-8 border-t border-slate-100 pt-8">
-                            <h3 className="mb-6 text-lg font-bold text-slate-900">Ubicación</h3>
-                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                <div className="sm:col-span-2">
-                                    <label className="mb-2 block text-sm font-bold text-slate-700">Dirección Exacta</label>
-                                    <input
-                                        type="text"
-                                        value={data.address}
-                                        onChange={e => setData('address', e.target.value)}
-                                        className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
-                                        placeholder="Calle, Número, Urbanización"
-                                        required
-                                    />
-                                </div>
-                                <div className="sm:col-span-2">
-                                    <label className="mb-2 block text-sm font-bold text-slate-700">Distrito / Provincia (Ubigeo Perú)</label>
-                                    <select
-                                        value={data.ubigeo_id}
-                                        onChange={e => setData('ubigeo_id', e.target.value)}
-                                        className="w-full rounded-2xl border-slate-200 bg-slate-50/50 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10"
-                                        required
-                                    >
-                                        <option value="">Selecciona una ubicación...</option>
-                                        {ubigeos.map(u => (
-                                            <option key={u.id} value={u.id}>{u.district} - {u.province}</option>
-                                        ))}
-                                    </select>
-                                </div>
+                    {/* Section 2: Location */}
+                    <div className={sectionClass}>
+                        <h2 className="text-xs font-bold uppercase tracking-widest text-[#FACC15] mb-6">
+                            Ubicación
+                        </h2>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div className="sm:col-span-2">
+                                <label className={labelClass}>Dirección Exacta</label>
+                                <input
+                                    type="text"
+                                    value={data.address}
+                                    onChange={e => setData('address', e.target.value)}
+                                    className={inputClass}
+                                    placeholder="Calle, Número, Urbanización"
+                                    required
+                                />
                             </div>
-                        </div>
-
-                        <div className="mt-8 border-t border-slate-100 pt-8">
-                            <h3 className="mb-6 text-lg font-bold text-slate-900">Amenidades</h3>
-                            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-                                {amenities.map(amenity => (
-                                    <button
-                                        key={amenity.id}
-                                        type="button"
-                                        onClick={() => toggleAmenity(amenity.id)}
-                                        className={`flex items-center justify-center rounded-2xl border px-4 py-3 text-xs font-bold transition-all ${data.amenityIds.includes(amenity.id)
-                                                ? 'border-indigo-600 bg-indigo-600 text-white shadow-lg shadow-indigo-100'
-                                                : 'border-slate-200 bg-white text-slate-600 hover:border-indigo-200 hover:bg-slate-50'
-                                            }`}
-                                    >
-                                        {amenity.name}
-                                    </button>
-                                ))}
+                            <div className="sm:col-span-2">
+                                <label className={labelClass}>Distrito / Provincia (Ubigeo Perú)</label>
+                                <select
+                                    value={data.ubigeo_id}
+                                    onChange={e => setData('ubigeo_id', e.target.value)}
+                                    className={inputClass}
+                                    required
+                                >
+                                    <option value="">Selecciona una ubicación...</option>
+                                    {ubigeos.map(u => (
+                                        <option key={u.id} value={u.id}>{u.district} — {u.province}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                     </div>
 
-                    <div className="flex justify-end pt-4">
+                    {/* Section 3: Amenities */}
+                    {amenities.length > 0 && (
+                        <div className={sectionClass}>
+                            <h2 className="text-xs font-bold uppercase tracking-widest text-[#FACC15] mb-6">
+                                Amenidades Premium
+                            </h2>
+                            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                                {amenities.map(amenity => {
+                                    const selected = data.amenityIds.includes(amenity.id);
+                                    return (
+                                        <button
+                                            key={amenity.id}
+                                            type="button"
+                                            onClick={() => toggleAmenity(amenity.id)}
+                                            className={`flex items-center justify-center rounded-xl border px-4 py-3 text-xs font-bold transition-all ${selected
+                                                    ? 'border-[#FACC15] bg-[#FACC15]/10 text-[#FACC15] shadow-md shadow-[#FACC15]/10'
+                                                    : 'border-[#333333] bg-[#1a1a1a] text-[#A0A0A0] hover:border-[#FACC15]/30 hover:text-white'
+                                                }`}
+                                        >
+                                            {selected && <span className="mr-1.5">✓</span>}
+                                            {amenity.name}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Submit */}
+                    <div className="flex justify-end gap-4 pt-2">
+                        <Link
+                            href="/propiedades"
+                            className="rounded-full border border-[#333333] px-8 py-3 text-sm font-bold text-[#A0A0A0] transition-all hover:border-[#FACC15]/30 hover:text-white"
+                        >
+                            Cancelar
+                        </Link>
                         <button
                             type="submit"
                             disabled={processing}
-                            className="rounded-3xl bg-slate-900 px-12 py-4 text-sm font-bold text-white shadow-2xl transition-all hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70"
+                            className="rounded-full bg-[#FACC15] px-12 py-3 text-sm font-bold text-[#121212] shadow-xl shadow-[#FACC15]/20 transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
                         >
-                            {processing ? 'Publicando...' : 'Publicar Propiedad Now'}
+                            {processing ? 'Publicando...' : 'Publicar Propiedad'}
                         </button>
                     </div>
                 </form>

@@ -78,7 +78,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     index.form = indexForm
 /**
- * @see routes/web.php:35
+ * @see routes/web.php:44
  * @route '/admin/usuarios/crear'
  */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -92,7 +92,7 @@ create.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
- * @see routes/web.php:35
+ * @see routes/web.php:44
  * @route '/admin/usuarios/crear'
  */
 create.url = (options?: RouteQueryOptions) => {
@@ -100,7 +100,7 @@ create.url = (options?: RouteQueryOptions) => {
 }
 
 /**
- * @see routes/web.php:35
+ * @see routes/web.php:44
  * @route '/admin/usuarios/crear'
  */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -108,7 +108,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     method: 'get',
 })
 /**
- * @see routes/web.php:35
+ * @see routes/web.php:44
  * @route '/admin/usuarios/crear'
  */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -117,7 +117,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
- * @see routes/web.php:35
+ * @see routes/web.php:44
  * @route '/admin/usuarios/crear'
  */
     const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -126,7 +126,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
- * @see routes/web.php:35
+ * @see routes/web.php:44
  * @route '/admin/usuarios/crear'
  */
         createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -134,7 +134,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
             method: 'get',
         })
             /**
- * @see routes/web.php:35
+ * @see routes/web.php:44
  * @route '/admin/usuarios/crear'
  */
         createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -204,7 +204,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     
     store.form = storeForm
 /**
- * @see routes/web.php:40
+ * @see routes/web.php:49
  * @route '/admin/usuarios/{user}/editar'
  */
 export const edit = (args: { user: string | { id: string } } | [user: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -218,7 +218,7 @@ edit.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
- * @see routes/web.php:40
+ * @see routes/web.php:49
  * @route '/admin/usuarios/{user}/editar'
  */
 edit.url = (args: { user: string | { id: string } } | [user: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -250,7 +250,7 @@ edit.url = (args: { user: string | { id: string } } | [user: string | { id: stri
 }
 
 /**
- * @see routes/web.php:40
+ * @see routes/web.php:49
  * @route '/admin/usuarios/{user}/editar'
  */
 edit.get = (args: { user: string | { id: string } } | [user: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -258,7 +258,7 @@ edit.get = (args: { user: string | { id: string } } | [user: string | { id: stri
     method: 'get',
 })
 /**
- * @see routes/web.php:40
+ * @see routes/web.php:49
  * @route '/admin/usuarios/{user}/editar'
  */
 edit.head = (args: { user: string | { id: string } } | [user: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -267,7 +267,7 @@ edit.head = (args: { user: string | { id: string } } | [user: string | { id: str
 })
 
     /**
- * @see routes/web.php:40
+ * @see routes/web.php:49
  * @route '/admin/usuarios/{user}/editar'
  */
     const editForm = (args: { user: string | { id: string } } | [user: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -276,7 +276,7 @@ edit.head = (args: { user: string | { id: string } } | [user: string | { id: str
     })
 
             /**
- * @see routes/web.php:40
+ * @see routes/web.php:49
  * @route '/admin/usuarios/{user}/editar'
  */
         editForm.get = (args: { user: string | { id: string } } | [user: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -284,7 +284,7 @@ edit.head = (args: { user: string | { id: string } } | [user: string | { id: str
             method: 'get',
         })
             /**
- * @see routes/web.php:40
+ * @see routes/web.php:49
  * @route '/admin/usuarios/{user}/editar'
  */
         editForm.head = (args: { user: string | { id: string } } | [user: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
