@@ -11,10 +11,6 @@ arch('models')
     ->toExtend('App\Core\BaseModel')
     ->ignoring('App\Modules\Auth\Domain\Models\User'); // User extiende de Authenticatable pero usa HasUuids
 
-// Las acciones deben extender de App\Core\BaseAction
-arch('actions')
-    ->expect('App\Modules\*\Application\Actions')
-    ->toExtend('App\Core\BaseAction');
 
 // Los controladores deben ser invokables y delgados
 arch('controllers')

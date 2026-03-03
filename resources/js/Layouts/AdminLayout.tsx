@@ -5,6 +5,7 @@ import { logout } from '@/routes';
 export default function AdminLayout({ children }: PropsWithChildren) {
     const { auth } = usePage().props as any;
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
     const navItems = [
         {
@@ -28,9 +29,9 @@ export default function AdminLayout({ children }: PropsWithChildren) {
             icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
         },
         {
-            name: 'Billing',
-            href: '/billing',
-            icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
+            name: 'Equipo',
+            href: '/admin/usuarios',
+            icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z',
         },
     ];
 
@@ -38,7 +39,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
         <div className="flex min-h-screen bg-[#121212] font-sans text-white">
             {/* Sidebar */}
             <aside
-                className={`${isSidebarOpen ? 'w-64' : 'w-20'} flex flex-col border-r border-[#333333] bg-[#1a1a1a] transition-all duration-300 ease-in-out`}
+                className={`${isSidebarOpen ? 'w-64' : 'w-20'} flex flex-col h-screen sticky top-0 border-r border-[#333333] bg-[#1a1a1a] transition-all duration-300 ease-in-out`}
             >
                 {/* Logo */}
                 <div className="flex h-16 items-center px-5 border-b border-[#333333]">
@@ -56,8 +57,8 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                     </div>
                 </div>
 
-                {/* Navigation */}
-                <nav className="mt-4 flex-1 space-y-1 px-3">
+                {/* Navigation - Scrollable */}
+                <nav className="mt-4 flex-1 space-y-1 px-3 overflow-y-auto custom-scrollbar">
                     {navItems.map((item) => {
                         const isActive = usePage().url.startsWith(item.href);
                         return (
@@ -83,8 +84,21 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                     })}
                 </nav>
 
-                {/* Logout */}
-                <div className="border-t border-[#333333] p-4">
+                {/* Sidebar Footer */}
+                <div className="border-t border-[#333333] p-4 space-y-2">
+                    <Link
+                        href="/profile"
+                        className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all group ${usePage().url === '/profile'
+                            ? 'bg-[#FACC15]/10 text-[#FACC15]'
+                            : 'text-[#A0A0A0] hover:bg-white/5 hover:text-white'
+                            }`}
+                    >
+                        <svg className="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        {isSidebarOpen && <span>Mi Perfil</span>}
+                    </Link>
+
                     <Link
                         href={logout.url()}
                         method="post"
@@ -117,25 +131,69 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                             <p className="text-sm font-semibold text-white">{auth?.user?.name}</p>
                             <p className="text-xs text-[#A0A0A0]">{auth?.user?.email}</p>
                         </div>
-                        <div className="h-10 w-10 rounded-full bg-[#242424] border-2 border-[#FACC15]/40 shadow-sm overflow-hidden flex items-center justify-center">
-                            <span className="text-sm font-bold text-[#FACC15]">
-                                {auth?.user?.name?.charAt(0)?.toUpperCase() ?? 'U'}
-                            </span>
+
+                        {/* User Menu Dropdown */}
+                        <div className="relative">
+                            <button
+                                onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                                className="group relative h-10 w-10 rounded-full overflow-hidden ring-2 ring-[#FACC15]/30 hover:ring-[#FACC15]/70 transition-all focus:outline-none"
+                            >
+                                {auth?.user?.avatar_url ? (
+                                    <img
+                                        src={auth.user.avatar_url}
+                                        alt={auth.user.name}
+                                        className="h-full w-full object-cover"
+                                    />
+                                ) : (
+                                    <div
+                                        className="h-full w-full flex items-center justify-center text-sm font-bold text-white"
+                                        style={{
+                                            backgroundColor: ['#FACC15', '#EAB308', '#CA8A04', '#A16207', '#333333', '#242424'][
+                                                (auth?.user?.initials?.charCodeAt(0) ?? 0) % 6
+                                            ],
+                                            color: (auth?.user?.initials?.charCodeAt(0) ?? 0) % 6 < 2 ? '#121212' : '#FFFFFF'
+                                        }}
+                                    >
+                                        {auth?.user?.initials ?? 'U'}
+                                    </div>
+                                )}
+                            </button>
+
+                            {isProfileMenuOpen && (
+                                <>
+                                    <div
+                                        className="fixed inset-0 z-10"
+                                        onClick={() => setIsProfileMenuOpen(false)}
+                                    />
+                                    <div className="absolute right-0 mt-2 w-48 rounded-xl border border-[#333333] bg-[#1a1a1a] p-2 shadow-2xl z-20">
+                                        <Link
+                                            href="/profile"
+                                            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#A0A0A0] hover:bg-white/5 hover:text-white transition-all"
+                                            onClick={() => setIsProfileMenuOpen(false)}
+                                        >
+                                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                            Mi Perfil
+                                        </Link>
+                                        <hr className="my-1 border-[#333333]" />
+                                        <Link
+                                            href={logout.url()}
+                                            method="post"
+                                            as="button"
+                                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 transition-all"
+                                        >
+                                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                            </svg>
+                                            Cerrar Sesión
+                                        </Link>
+                                    </div>
+                                </>
+                            )}
                         </div>
-                        {/* Logout en header — siempre accesible */}
-                        <Link
-                            href={logout.url()}
-                            method="post"
-                            as="button"
-                            title="Cerrar Sesión"
-                            className="flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-3 py-2 text-xs font-bold text-red-400 transition-all hover:bg-red-500/10 hover:border-red-400/40"
-                        >
-                            <svg className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span className="hidden sm:inline">Salir</span>
-                        </Link>
                     </div>
+
 
                 </header>
 

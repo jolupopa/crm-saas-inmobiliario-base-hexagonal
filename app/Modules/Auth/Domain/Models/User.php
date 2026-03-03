@@ -2,18 +2,18 @@
 
 namespace App\Modules\Auth\Domain\Models;
 
-use App\Core\BaseModel;
 use App\Modules\Company\Domain\Models\Company;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasUuids;
+    use HasFactory, Notifiable, HasUuids, TwoFactorAuthenticatable;
 
     protected static function newFactory()
     {
@@ -28,9 +28,10 @@ class User extends Authenticatable
     protected $fillable = [
         'company_id',
         'name',
-        'company_name',   // Nombre comercial — perfil de usuario (single-tenant)
+        'company_name',
         'email',
         'password',
+        'avatar_url',
     ];
 
     /**
@@ -59,5 +60,19 @@ class User extends Authenticatable
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * Genera las iniciales del usuario para el avatar por defecto.
+     */
+    public function getInitials(): string
+    {
+        $words = explode(' ', trim($this->name));
+        $initials = '';
+        foreach (array_slice($words, 0, 2) as $word) {
+            $initials .= mb_strtoupper(mb_substr($word, 0, 1));
+        }
+
+        return $initials ?: 'U';
     }
 }

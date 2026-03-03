@@ -72,8 +72,8 @@ request.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     request.form = requestForm
 /**
-* @see \Laravel\Fortify\Http\Controllers\NewPasswordController::reset
- * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:44
+* @see \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/ResetPasswordController.php:11
  * @route '/reset-password/{token}'
  */
 export const reset = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -87,8 +87,8 @@ reset.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\NewPasswordController::reset
- * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:44
+* @see \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/ResetPasswordController.php:11
  * @route '/reset-password/{token}'
  */
 reset.url = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -115,8 +115,8 @@ reset.url = (args: { token: string | number } | [token: string | number ] | stri
 }
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\NewPasswordController::reset
- * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:44
+* @see \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/ResetPasswordController.php:11
  * @route '/reset-password/{token}'
  */
 reset.get = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -124,8 +124,8 @@ reset.get = (args: { token: string | number } | [token: string | number ] | stri
     method: 'get',
 })
 /**
-* @see \Laravel\Fortify\Http\Controllers\NewPasswordController::reset
- * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:44
+* @see \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/ResetPasswordController.php:11
  * @route '/reset-password/{token}'
  */
 reset.head = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -134,8 +134,8 @@ reset.head = (args: { token: string | number } | [token: string | number ] | str
 })
 
     /**
-* @see \Laravel\Fortify\Http\Controllers\NewPasswordController::reset
- * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:44
+* @see \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/ResetPasswordController.php:11
  * @route '/reset-password/{token}'
  */
     const resetForm = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -144,8 +144,8 @@ reset.head = (args: { token: string | number } | [token: string | number ] | str
     })
 
             /**
-* @see \Laravel\Fortify\Http\Controllers\NewPasswordController::reset
- * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:44
+* @see \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/ResetPasswordController.php:11
  * @route '/reset-password/{token}'
  */
         resetForm.get = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -153,8 +153,8 @@ reset.head = (args: { token: string | number } | [token: string | number ] | str
             method: 'get',
         })
             /**
-* @see \Laravel\Fortify\Http\Controllers\NewPasswordController::reset
- * @see vendor/laravel/fortify/src/Http/Controllers/NewPasswordController.php:44
+* @see \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/ResetPasswordController.php:11
  * @route '/reset-password/{token}'
  */
         resetForm.head = (args: { token: string | number } | [token: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

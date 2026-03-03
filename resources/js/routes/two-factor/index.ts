@@ -1,8 +1,8 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
 import loginDf2c2a from './login'
 /**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
- * @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @see \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/TwoFactorChallengeController.php:10
  * @route '/two-factor-challenge'
  */
 export const login = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,8 +16,8 @@ login.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
- * @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @see \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/TwoFactorChallengeController.php:10
  * @route '/two-factor-challenge'
  */
 login.url = (options?: RouteQueryOptions) => {
@@ -25,8 +25,8 @@ login.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
- * @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @see \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/TwoFactorChallengeController.php:10
  * @route '/two-factor-challenge'
  */
 login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,8 +34,8 @@ login.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     method: 'get',
 })
 /**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
- * @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @see \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/TwoFactorChallengeController.php:10
  * @route '/two-factor-challenge'
  */
 login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,8 +44,8 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
- * @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @see \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/TwoFactorChallengeController.php:10
  * @route '/two-factor-challenge'
  */
     const loginForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,8 +54,8 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
- * @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @see \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/TwoFactorChallengeController.php:10
  * @route '/two-factor-challenge'
  */
         loginForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,8 +63,8 @@ login.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
             method: 'get',
         })
             /**
-* @see \Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController::login
- * @see vendor/laravel/fortify/src/Http/Controllers/TwoFactorAuthenticatedSessionController.php:41
+* @see \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::__invoke
+ * @see app/Modules/Auth/Presentation/Controllers/TwoFactorChallengeController.php:10
  * @route '/two-factor-challenge'
  */
         loginForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

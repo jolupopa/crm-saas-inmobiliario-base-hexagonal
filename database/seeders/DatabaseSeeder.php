@@ -54,15 +54,54 @@ class DatabaseSeeder extends Seeder
         $company = Company::create([
             'name' => 'Inmobiliaria Demo',
             'slug' => 'inmobiliaria-demo',
-            'settings' => ['theme' => 'light']
+            'settings' => ['theme' => 'dark']
         ]);
 
+        // Asegurar directorio de avatares
+        $avatarPath = storage_path('app/public/avatars');
+        if (!file_exists($avatarPath)) {
+            mkdir($avatarPath, 0755, true);
+        }
+
+        // Función para descargar avatar de prueba
+        $downloadAvatar = function($id) use ($avatarPath) {
+            $filename = "avatar_{$id}.jpg";
+            $target = "{$avatarPath}/{$filename}";
+            if (!file_exists($target)) {
+                $content = @file_get_contents("https://i.pravatar.cc/300?u={$id}");
+                if ($content) {
+                    file_put_contents($target, $content);
+                    return "avatars/{$filename}";
+                }
+            }
+            return null;
+        };
+
         $admin = User::create([
-            'company_id' => $company->id,
-            'name' => 'Admin Demo',
-            'email' => 'admin@demo.com',
-            'password' => Hash::make('password'),
+            'company_id'   => $company->id,
+            'name'         => 'Admin Demo',
+            'company_name' => 'Real Estate Premium',
+            'email'        => 'admin@demo.com',
+            'password'     => Hash::make('password'),
+            'avatar_url'   => $downloadAvatar('admin'),
         ]);
+
+        // Crear algunos usuarios de equipo
+        $team = [
+            ['name' => 'Carla Méndez', 'email' => 'carla@demo.com', 'company' => 'Méndez Properties'],
+            ['name' => 'Roberto Sánchez', 'email' => 'roberto@demo.com', 'company' => 'Sánchez & Co'],
+        ];
+
+        foreach ($team as $index => $member) {
+            User::create([
+                'company_id'   => $company->id,
+                'name'         => $member['name'],
+                'company_name' => $member['company'],
+                'email'        => $member['email'],
+                'password'     => Hash::make('password'),
+                'avatar_url'   => $downloadAvatar($index + 1),
+            ]);
+        }
 
         // 4. Amenities
         $amenities = ['Piscina', 'Gimnasio', 'Seguridad 24/7', 'Área de Parrillas', 'Elevador'];

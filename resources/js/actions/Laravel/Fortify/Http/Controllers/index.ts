@@ -1,6 +1,6 @@
 import AuthenticatedSessionController from './AuthenticatedSessionController'
-import NewPasswordController from './NewPasswordController'
 import PasswordResetLinkController from './PasswordResetLinkController'
+import NewPasswordController from './NewPasswordController'
 import RegisteredUserController from './RegisteredUserController'
 import ProfileInformationController from './ProfileInformationController'
 import PasswordController from './PasswordController'
@@ -14,8 +14,8 @@ import TwoFactorSecretKeyController from './TwoFactorSecretKeyController'
 import RecoveryCodeController from './RecoveryCodeController'
 const Controllers = {
     AuthenticatedSessionController: Object.assign(AuthenticatedSessionController, AuthenticatedSessionController),
-NewPasswordController: Object.assign(NewPasswordController, NewPasswordController),
 PasswordResetLinkController: Object.assign(PasswordResetLinkController, PasswordResetLinkController),
+NewPasswordController: Object.assign(NewPasswordController, NewPasswordController),
 RegisteredUserController: Object.assign(RegisteredUserController, RegisteredUserController),
 ProfileInformationController: Object.assign(ProfileInformationController, ProfileInformationController),
 PasswordController: Object.assign(PasswordController, PasswordController),

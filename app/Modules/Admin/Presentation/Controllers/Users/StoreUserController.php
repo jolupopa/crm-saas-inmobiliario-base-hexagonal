@@ -12,19 +12,28 @@ class StoreUserController
     public function __invoke(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'name'         => ['required', 'string', 'max:255'],
+            'email'        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'company_name' => ['nullable', 'string', 'max:255'],
+            'password'     => ['required', 'confirmed', Password::defaults()],
+            'avatar'       => ['nullable', 'image', 'max:2048'],
         ]);
 
+        $avatarUrl = null;
+        if ($request->hasFile('avatar')) {
+            $avatarUrl = $request->file('avatar')->store('avatars', 'public');
+        }
+
         User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-            'company_id' => $request->user()->company_id,
+            'name'         => $validated['name'],
+            'email'        => $validated['email'],
+            'company_name' => $validated['company_name'] ?? null,
+            'password'     => Hash::make($validated['password']),
+            'avatar_url'   => $avatarUrl,
+            'company_id'   => $request->user()->company_id,
         ]);
 
         return redirect()->route('admin.users.index')
-            ->with('message', 'User created successfully');
+            ->with('success', 'Usuario creado correctamente');
     }
 }

@@ -27,9 +27,11 @@ class UserFactory extends Factory
         return [
             'company_id' => \App\Modules\Company\Domain\Models\Company::factory(),
             'name' => fake()->name(),
+            'company_name' => fake()->company(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'avatar_url' => null, // Se asignará en el seeder o mediante un estado
             'remember_token' => Str::random(10),
         ];
     }

@@ -7,12 +7,18 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', fn() => inertia('Auth::Login'))->name('login');
     Route::get('/register', fn() => inertia('Auth::Register'))->name('register');
     Route::get('/forgot-password', fn() => inertia('Auth::ForgotPassword'))->name('password.request');
+    Route::get('/reset-password/{token}', \App\Modules\Auth\Presentation\Controllers\ResetPasswordController::class)
+        ->name('password.reset');
 });
+
+// ── Two Factor Challenge ──────────────────────────────────────────────────────
+Route::get('/two-factor-challenge', \App\Modules\Auth\Presentation\Controllers\TwoFactorChallengeController::class)
+    ->middleware(['web'])
+    ->name('two-factor.login');
 
 // ── Public ───────────────────────────────────────────────────────────────────
 Route::get('/', \App\Modules\Public\Presentation\Controllers\HomeController::class)
     ->name('home');
-
 
 Route::get('/test-blade', function () {
     return 'Blade is working';
@@ -37,7 +43,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/billing', \App\Modules\Billing\Presentation\Controllers\PricingController::class)
         ->name('billing.index');
 
-    // Admin / Usuarios
+    // ── Perfil del usuario autenticado ───────────────────────────────────────
+    Route::get('/profile', \App\Modules\Profile\Presentation\Controllers\ShowProfileController::class)
+        ->name('profile.show');
+    Route::put('/profile', \App\Modules\Profile\Presentation\Controllers\UpdateProfileController::class)
+        ->name('profile.update');
+    Route::post('/profile/avatar', \App\Modules\Profile\Presentation\Controllers\UpdateAvatarController::class)
+        ->name('profile.avatar');
+
+    // ── Admin / Usuarios ─────────────────────────────────────────────────────
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/usuarios', \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::class)
             ->name('users.index');
@@ -55,4 +69,3 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             ->name('users.destroy');
     });
 });
-
