@@ -5,7 +5,6 @@ use App\Modules\Company\Domain\Models\Company;
 use App\Modules\Properties\Domain\Models\Ubigeo;
 use App\Modules\Properties\Application\Actions\PublishPropertyAction;
 use App\Modules\Properties\Domain\Services\GeocodingServiceInterface;
-use Mockery;
 
 test('it uses geocoding service when coordinates are missing', function () {
     $company = Company::factory()->create();

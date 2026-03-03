@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../wayfinder'
 /**
 * @see \App\Modules\CRM\Presentation\Controllers\PipelineController::__invoke
- * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:14
+ * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:15
  * @route '/crm/pipeline'
  */
 export const pipeline = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ pipeline.definition = {
 
 /**
 * @see \App\Modules\CRM\Presentation\Controllers\PipelineController::__invoke
- * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:14
+ * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:15
  * @route '/crm/pipeline'
  */
 pipeline.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ pipeline.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Modules\CRM\Presentation\Controllers\PipelineController::__invoke
- * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:14
+ * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:15
  * @route '/crm/pipeline'
  */
 pipeline.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ pipeline.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Modules\CRM\Presentation\Controllers\PipelineController::__invoke
- * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:14
+ * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:15
  * @route '/crm/pipeline'
  */
 pipeline.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ pipeline.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Modules\CRM\Presentation\Controllers\PipelineController::__invoke
- * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:14
+ * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:15
  * @route '/crm/pipeline'
  */
     const pipelineForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ pipeline.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Modules\CRM\Presentation\Controllers\PipelineController::__invoke
- * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:14
+ * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:15
  * @route '/crm/pipeline'
  */
         pipelineForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ pipeline.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Modules\CRM\Presentation\Controllers\PipelineController::__invoke
- * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:14
+ * @see app/Modules/CRM/Presentation/Controllers/PipelineController.php:15
  * @route '/crm/pipeline'
  */
         pipelineForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

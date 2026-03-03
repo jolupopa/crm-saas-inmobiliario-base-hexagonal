@@ -1,8 +1,8 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import FrontLayout from '../../../Layouts/FrontLayout';
-import register from '@/routes/register';
-import { login } from '@/routes';
+import registerActions from '@/routes/register';
+import { login, register } from '@/routes';
 
 export default function Register() {
     const { data, setData, post, processing, errors } = useForm({
@@ -15,7 +15,7 @@ export default function Register() {
 
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
-        post(register.store.url());
+        post(registerActions.store.url());
     };
 
     return (

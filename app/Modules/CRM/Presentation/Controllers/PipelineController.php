@@ -5,6 +5,7 @@ namespace App\Modules\CRM\Presentation\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\CRM\Domain\Models\PipelineStage;
 use App\Modules\CRM\Domain\Models\Lead;
+use App\Modules\CRM\Presentation\Resources\PipelineStageResource;
 use App\Modules\CRM\Presentation\Resources\LeadResource;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class PipelineController extends Controller
             ->get();
 
         return Inertia::render('CRM::Pipeline', [
-            'stages' => $stages,
+            'stages' => PipelineStageResource::collection($stages),
             'leads' => LeadResource::collection($leads),
         ]);
     }

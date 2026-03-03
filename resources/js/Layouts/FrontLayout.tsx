@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { Link, usePage } from '@inertiajs/react';
-import { home, login, register, logout, dashboard } from '@/routes';
+import { home, register, dashboard, login, logout } from '@/routes';
 
 export default function FrontLayout({ children }: PropsWithChildren) {
     const { auth } = usePage().props as any;

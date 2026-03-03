@@ -17,8 +17,9 @@ test('authenticated user can upload an avatar', function () {
         ->post(route('profile.avatar'), ['avatar' => $file]);
 
     $response->assertRedirect();
-    $this->assertNotNull($user->fresh()->avatar_url);
-    Storage::disk('public')->assertExists('avatars/' . $user->id . '.jpg');
+    $updatedUser = $user->fresh();
+    $this->assertNotNull($updatedUser->avatar_url);
+    Storage::disk('public')->assertExists($updatedUser->avatar_url);
 });
 
 test('unauthenticated user cannot upload avatar', function () {

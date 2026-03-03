@@ -51,7 +51,7 @@ test('a user can have direct permissions without roles', function () {
 });
 
 test('superadmin bypasses all permission checks', function () {
-    $user = User::factory()->create(['email' => 'admin@estatemanager.com']);
+    $user = User::factory()->create(['email' => 'superusuario@demo.com']);
     
     expect($user->hasPermission('any.crazy.permission'))->toBeTrue();
 });

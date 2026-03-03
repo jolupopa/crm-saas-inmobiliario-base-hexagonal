@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../../../wayfinder'
 /**
 * @see \App\Modules\Properties\Presentation\Controllers\CreatePropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:12
+ * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:14
  * @route '/propiedades/crear'
  */
 const CreatePropertyController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ CreatePropertyController.definition = {
 
 /**
 * @see \App\Modules\Properties\Presentation\Controllers\CreatePropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:12
+ * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:14
  * @route '/propiedades/crear'
  */
 CreatePropertyController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ CreatePropertyController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Modules\Properties\Presentation\Controllers\CreatePropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:12
+ * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:14
  * @route '/propiedades/crear'
  */
 CreatePropertyController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ CreatePropertyController.get = (options?: RouteQueryOptions): RouteDefinition<'g
 })
 /**
 * @see \App\Modules\Properties\Presentation\Controllers\CreatePropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:12
+ * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:14
  * @route '/propiedades/crear'
  */
 CreatePropertyController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ CreatePropertyController.head = (options?: RouteQueryOptions): RouteDefinition<'
 
     /**
 * @see \App\Modules\Properties\Presentation\Controllers\CreatePropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:12
+ * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:14
  * @route '/propiedades/crear'
  */
     const CreatePropertyControllerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ CreatePropertyController.head = (options?: RouteQueryOptions): RouteDefinition<'
 
             /**
 * @see \App\Modules\Properties\Presentation\Controllers\CreatePropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:12
+ * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:14
  * @route '/propiedades/crear'
  */
         CreatePropertyControllerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ CreatePropertyController.head = (options?: RouteQueryOptions): RouteDefinition<'
         })
             /**
 * @see \App\Modules\Properties\Presentation\Controllers\CreatePropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:12
+ * @see app/Modules/Properties/Presentation/Controllers/CreatePropertyController.php:14
  * @route '/propiedades/crear'
  */
         CreatePropertyControllerForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

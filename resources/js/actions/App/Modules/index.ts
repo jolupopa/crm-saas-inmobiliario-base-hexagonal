@@ -7,6 +7,7 @@ import CRM from './CRM'
 import Billing from './Billing'
 import Profile from './Profile'
 import Admin from './Admin'
+import Categories from './Categories'
 const Modules = {
     Auth: Object.assign(Auth, Auth),
 Public: Object.assign(Public, Public),
@@ -17,6 +18,7 @@ CRM: Object.assign(CRM, CRM),
 Billing: Object.assign(Billing, Billing),
 Profile: Object.assign(Profile, Profile),
 Admin: Object.assign(Admin, Admin),
+Categories: Object.assign(Categories, Categories),
 }
 
 export default Modules

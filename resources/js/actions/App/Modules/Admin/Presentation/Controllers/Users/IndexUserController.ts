@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../../../../wayfinder'
 /**
 * @see \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::__invoke
- * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:14
+ * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:15
  * @route '/admin/usuarios'
  */
 const IndexUserController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ IndexUserController.definition = {
 
 /**
 * @see \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::__invoke
- * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:14
+ * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:15
  * @route '/admin/usuarios'
  */
 IndexUserController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ IndexUserController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::__invoke
- * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:14
+ * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:15
  * @route '/admin/usuarios'
  */
 IndexUserController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ IndexUserController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> 
 })
 /**
 * @see \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::__invoke
- * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:14
+ * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:15
  * @route '/admin/usuarios'
  */
 IndexUserController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ IndexUserController.head = (options?: RouteQueryOptions): RouteDefinition<'head'
 
     /**
 * @see \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::__invoke
- * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:14
+ * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:15
  * @route '/admin/usuarios'
  */
     const IndexUserControllerForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ IndexUserController.head = (options?: RouteQueryOptions): RouteDefinition<'head'
 
             /**
 * @see \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::__invoke
- * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:14
+ * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:15
  * @route '/admin/usuarios'
  */
         IndexUserControllerForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ IndexUserController.head = (options?: RouteQueryOptions): RouteDefinition<'head'
         })
             /**
 * @see \App\Modules\Admin\Presentation\Controllers\Users\IndexUserController::__invoke
- * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:14
+ * @see app/Modules/Admin/Presentation/Controllers/Users/IndexUserController.php:15
  * @route '/admin/usuarios'
  */
         IndexUserControllerForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

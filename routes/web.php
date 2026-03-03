@@ -85,5 +85,20 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
                 'permissions' => \App\Modules\ACL\Domain\Models\Permission::all(),
             ]);
         })->name('acl.index');
+
+        Route::get('/categorias', \App\Modules\Categories\Presentation\Http\Controllers\Admin\IndexCategoryController::class)
+            ->name('categories.index');
+    });
+
+    // ── Categorías (API) ──────────────────────────────────────────────────────
+    Route::group(['prefix' => 'api/categories', 'as' => 'api.categories.'], function () {
+        Route::get('/', \App\Modules\Categories\Presentation\Http\Controllers\Api\ListCategoryController::class)
+            ->name('index');
+        Route::post('/', \App\Modules\Categories\Presentation\Http\Controllers\Api\StoreCategoryController::class)
+            ->name('store');
+        Route::put('/{category}', \App\Modules\Categories\Presentation\Http\Controllers\Api\UpdateCategoryController::class)
+            ->name('update');
+        Route::delete('/{category}', \App\Modules\Categories\Presentation\Http\Controllers\Api\DeleteCategoryController::class)
+            ->name('destroy');
     });
 });

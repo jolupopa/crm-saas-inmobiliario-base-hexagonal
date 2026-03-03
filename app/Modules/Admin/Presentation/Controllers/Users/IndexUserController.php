@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 
 use App\Modules\Admin\Presentation\Resources\UserResource;
+use App\Modules\Admin\Presentation\Resources\RoleResource;
 
 class IndexUserController
 {
@@ -36,7 +37,7 @@ class IndexUserController
         return Inertia::render('Admin::Users/Index', [
             'users' => UserResource::collection($query->paginate()->withQueryString()),
             'filters' => $request->only(['search', 'role']),
-            'availableRoles' => \App\Modules\ACL\Domain\Models\Role::all(['id', 'name', 'slug'])
+            'availableRoles' => RoleResource::collection(\App\Modules\ACL\Domain\Models\Role::all(['id', 'name', 'slug']))
         ]);
     }
 }
