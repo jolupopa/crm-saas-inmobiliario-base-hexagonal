@@ -32,6 +32,7 @@ class PropertyResource extends BaseResource
                 'id' => $this->user->id,
                 'name' => $this->user->name,
             ],
+            'main_image' => $this->getFirstMediaUrl('images') ?: '/images/placeholder-property.jpg',
             'created_at' => $this->transformDate($this->created_at),
         ];
     }
