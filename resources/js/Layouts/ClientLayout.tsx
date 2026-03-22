@@ -125,50 +125,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                     ))}
                 </nav>
 
-                <div className="border-t border-[#242424] p-4">
-                    <button
-                        onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                        className="group flex w-full items-center gap-3 rounded-xl p-2 transition-colors hover:bg-[#242424] overflow-hidden"
-                    >
-                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#333333] text-sm font-bold text-white transition-colors group-hover:bg-[#444444]">
-                            {auth.user.name.charAt(0)}
-                        </div>
-                        {!isSidebarCollapsed && (
-                            <>
-                                <div className="flex-1 text-left overflow-hidden animate-in fade-in duration-500">
-                                    <p className="truncate text-sm font-bold text-white">{auth.user.name}</p>
-                                    <p className="truncate text-xs text-[#A0A0A0]">{auth.user.email}</p>
-                                </div>
-                                <ChevronDown className={`h-4 w-4 text-[#A0A0A0] transition-transform ${isProfileDropdownOpen ? 'rotate-180' : ''}`} />
-                            </>
-                        )}
-                    </button>
-
-                    {isProfileDropdownOpen && !isSidebarCollapsed && (
-                        <div className="mt-2 space-y-1 animate-in fade-in slide-in-from-top-2">
-                            <Link href="/profile" className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-[#A0A0A0] hover:bg-[#242424] hover:text-white">
-                                <User className="h-3 w-3" /> Ver Perfil
-                            </Link>
-                            <Link href="/logout" method="post" as="button" className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-red-400 hover:bg-red-400/10">
-                                <LogOut className="h-3 w-3" /> Cerrar Sesión
-                            </Link>
-                        </div>
-                    )}
-                </div>
-
-                {/* Sidebar Toggle Button */}
-                <div className="p-4 border-t border-[#242424]">
-                    <button
-                        onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                        className="w-full flex items-center justify-center p-2 rounded-xl border border-[#242424] hover:border-[#FACC15] transition-all text-[#A0A0A0] hover:text-[#FACC15]"
-                    >
-                        {isSidebarCollapsed ? (
-                            <ChevronRight className="h-5 w-5" />
-                        ) : (
-                            <ChevronLeft className="h-5 w-5" />
-                        )}
-                    </button>
-                </div>
             </aside>
 
             {/* Header Mobile */}
@@ -184,15 +140,70 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                 </button>
             </header>
 
-            <main 
-                className={`min-h-screen pt-4 transition-all duration-300 ${
+            <div
+                className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${
                     isSidebarCollapsed ? 'lg:pl-20' : 'lg:pl-64'
                 }`}
             >
-                <div className="mx-auto max-w-7xl p-4 lg:p-8">
-                    {children}
-                </div>
-            </main>
+                {/* Desktop Header */}
+                <header className="sticky top-0 z-40 hidden h-20 border-b border-[#242424] bg-[#1a1a1a]/80 backdrop-blur-md lg:flex items-center justify-between px-8">
+                    {/* Toggle Left */}
+                    <button
+                        onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                        className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#242424] border border-[#333333] text-[#A0A0A0] hover:text-[#FACC15] transition-all"
+                    >
+                        {isSidebarCollapsed ? (
+                            <ChevronRight className="h-5 w-5" />
+                        ) : (
+                            <ChevronLeft className="h-5 w-5" />
+                        )}
+                    </button>
+
+                    {/* Profile Right */}
+                    <div className="relative">
+                        <button
+                            onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                            className="flex items-center gap-3 p-1 rounded-2xl hover:bg-white/5 transition-all outline-none"
+                        >
+                            <div className="h-10 w-10 rounded-xl overflow-hidden ring-2 ring-[#FACC15]/20 bg-[#242424] flex items-center justify-center border border-[#333333]">
+                                <span className="text-sm font-bold text-[#FACC15]">{auth.user.name.charAt(0)}</span>
+                            </div>
+                            <div className="hidden lg:block text-left pr-2">
+                                <p className="text-xs font-black text-white truncate max-w-[120px]">{auth.user.name}</p>
+                                <p className="text-[10px] text-[#A0A0A0] font-bold uppercase tracking-tighter">
+                                    Agente
+                                </p>
+                            </div>
+                            <ChevronDown className={`h-4 w-4 text-[#A0A0A0] transition-transform ${isProfileDropdownOpen ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        {isProfileDropdownOpen && (
+                            <div className="absolute right-0 mt-3 w-64 origin-top-right rounded-2xl border border-[#333333] bg-[#1a1a1a] p-2 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none animate-in fade-in slide-in-from-top-2">
+                                <div className="px-4 py-4 border-b border-[#333333] mb-1">
+                                    <p className="text-sm font-bold text-white truncate">{auth.user.name}</p>
+                                    <p className="text-xs text-[#A0A0A0] truncate mt-0.5">{auth.user.email}</p>
+                                </div>
+                                <div className="py-1">
+                                    <Link href="/profile" className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#A0A0A0] hover:bg-white/5 hover:text-white rounded-xl transition-all">
+                                        <User className="h-4 w-4" /> Ver Perfil
+                                    </Link>
+                                </div>
+                                <div className="pt-1 mt-1 border-t border-[#333333]">
+                                    <Link href="/logout" method="post" as="button" className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 rounded-xl transition-all text-left">
+                                        <LogOut className="h-4 w-4" /> Cerrar Sesión
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </header>
+
+                <main className="min-h-screen pt-4">
+                    <div className="mx-auto max-w-7xl p-4 lg:p-8">
+                        {children}
+                    </div>
+                </main>
+            </div>
 
             {/* Mobile Menu Backdrop */}
             {isMobileMenuOpen && (
@@ -224,6 +235,36 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
                         </Link>
                     ))}
                 </nav>
+
+                {/* Mobile Profile Section */}
+                <div className="absolute bottom-0 left-0 right-0 border-t border-[#242424] p-6 bg-[#1a1a1a]">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#333333] text-lg font-bold text-[#FACC15]">
+                            {auth.user.name.charAt(0)}
+                        </div>
+                        <div className="flex-1 overflow-hidden">
+                            <p className="truncate text-base font-bold text-white">{auth.user.name}</p>
+                            <p className="truncate text-sm text-[#A0A0A0]">{auth.user.email}</p>
+                        </div>
+                    </div>
+                    <div className="space-y-3">
+                        <Link 
+                            href="/profile" 
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="flex items-center gap-3 rounded-xl bg-[#242424] px-4 py-4 text-sm font-medium text-white"
+                        >
+                            <User className="h-5 w-5 text-[#A0A0A0]" /> Gestión de Perfil
+                        </Link>
+                        <Link 
+                            href="/logout" 
+                            method="post" 
+                            as="button" 
+                            className="flex w-full items-center gap-3 rounded-xl bg-red-500/10 px-4 py-4 text-sm font-medium text-red-400"
+                        >
+                            <LogOut className="h-5 w-5" /> Cerrar Sesión
+                        </Link>
+                    </div>
+                </div>
             </div>
         </div>
     );
