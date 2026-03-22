@@ -17,12 +17,20 @@ test('it can publish a property with amenities', function () {
         'district' => 'Lima',
     ]);
 
-    $amenity1 = Amenity::create(['name' => 'Piscina']);
-    $amenity2 = Amenity::create(['name' => 'Gimnasio']);
+    $category = \App\Modules\Categories\Domain\Models\Category::create([
+        'company_id' => $company->id,
+        'name' => 'Apartment',
+        'slug' => 'apartment',
+        'type' => 'property',
+    ]);
+
+    $amenity1 = Amenity::create(['name' => 'Piscina', 'company_id' => $company->id]);
+    $amenity2 = Amenity::create(['name' => 'Gimnasio', 'company_id' => $company->id]);
 
     $details = [
         'company_id' => $company->id,
         'user_id' => $agent->id,
+        'category_id' => $category->id,
         'ubigeo_id' => $ubigeo->id,
         'title' => 'Lujoso Departamento en Miraflores',
         'type' => 'apartment',

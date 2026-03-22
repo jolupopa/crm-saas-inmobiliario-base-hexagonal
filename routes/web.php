@@ -22,7 +22,7 @@ Route::get('/', \App\Modules\Public\Presentation\Controllers\HomeController::cla
 Route::get('/propiedades-publico', \App\Modules\Public\Presentation\Controllers\PublicPropertyController::class)
     ->name('public.properties.index');
 
-Route::get('/propiedad/{property}', \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::class)
+Route::get('/propiedad/{property}', \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::class)
     ->name('public.properties.show');
 
 Route::get('/test-blade', function () {

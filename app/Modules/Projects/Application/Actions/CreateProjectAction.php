@@ -13,16 +13,24 @@ class CreateProjectAction extends BaseAction
 
     public function execute(): Project
     {
-        return Project::create([
+        $project = Project::create([
             'company_id' => $this->data['company_id'],
-            'ubigeo_id' => $this->data['ubigeo_id'],
             'name' => $this->data['name'],
             'description' => $this->data['description'] ?? null,
-            'address' => $this->data['address'] ?? null,
-            'latitude' => $this->data['latitude'] ?? null,
-            'longitude' => $this->data['longitude'] ?? null,
             'status' => $this->data['status'] ?? 'planned',
             'metadata' => $this->data['metadata'] ?? [],
         ]);
+
+        if (isset($this->data['ubigeo_id'])) {
+            $project->address()->create([
+                'company_id' => $this->data['company_id'],
+                'ubigeo_id' => $this->data['ubigeo_id'],
+                'address' => $this->data['address'] ?? null,
+                'latitude' => $this->data['latitude'] ?? null,
+                'longitude' => $this->data['longitude'] ?? null,
+            ]);
+        }
+
+        return $project;
     }
 }

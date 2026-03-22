@@ -17,12 +17,12 @@ class ListPropertiesController extends Controller
     public function __invoke(Request $request)
     {
         $user = Auth::user();
-        $isAdmin = $user->roles->contains('slug', 'admin') || $user->email === 'superusuario@demo.com';
+        $isPrivileged = $user->isPrivileged();
 
         $filters = $request->only(['search', 'type', 'operation', 'min_price', 'max_price', 'bedrooms', 'bathrooms', 'category_id', 'amenities', 'user_id']);
         $filters['company_id'] = $user->company_id;
 
-        if ($isAdmin) {
+        if ($isPrivileged) {
             $filters['include_trashed'] = true;
         } else {
             // Strictly enforce personal CRUD for all other roles
@@ -33,7 +33,7 @@ class ListPropertiesController extends Controller
 
         // Stats calculation
         $baseQuery = Property::where('company_id', $user->company_id);
-        if (!$isAdmin) {
+        if (!$isPrivileged) {
             $baseQuery->where('user_id', $user->id);
         }
 
@@ -54,7 +54,7 @@ class ListPropertiesController extends Controller
             'properties' => PropertyResource::collection($properties),
             'stats' => $stats,
             'quotaInfo' => $quotaInfo,
-            'isAdmin' => $isAdmin,
+            'isAdmin' => $isPrivileged,
             'filters' => $filters,
             'categories' => Category::where('company_id', $user->company_id)->where('type', 'property')->get(['id', 'name']),
             'amenities' => Amenity::all(['id', 'name', 'icon']),

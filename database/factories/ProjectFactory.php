@@ -16,7 +16,7 @@ class ProjectFactory extends Factory
             'company_id' => Company::factory(),
             'name' => fake()->sentence(3),
             'description' => fake()->paragraph(),
-            'status' => 'active',
+            'status' => 'planned',
             'metadata' => [],
         ];
     }

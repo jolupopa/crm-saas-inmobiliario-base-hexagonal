@@ -78,8 +78,8 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     index.form = indexForm
 /**
-* @see \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/ShowPropertyController.php:13
+* @see \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::__invoke
+ * @see app/Modules/Public/Presentation/Controllers/PublicShowPropertyController.php:13
  * @route '/propiedad/{property}'
  */
 export const show = (args: { property: string | { id: string } } | [property: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -93,8 +93,8 @@ show.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/ShowPropertyController.php:13
+* @see \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::__invoke
+ * @see app/Modules/Public/Presentation/Controllers/PublicShowPropertyController.php:13
  * @route '/propiedad/{property}'
  */
 show.url = (args: { property: string | { id: string } } | [property: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions) => {
@@ -126,8 +126,8 @@ show.url = (args: { property: string | { id: string } } | [property: string | { 
 }
 
 /**
-* @see \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/ShowPropertyController.php:13
+* @see \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::__invoke
+ * @see app/Modules/Public/Presentation/Controllers/PublicShowPropertyController.php:13
  * @route '/propiedad/{property}'
  */
 show.get = (args: { property: string | { id: string } } | [property: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -135,8 +135,8 @@ show.get = (args: { property: string | { id: string } } | [property: string | { 
     method: 'get',
 })
 /**
-* @see \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/ShowPropertyController.php:13
+* @see \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::__invoke
+ * @see app/Modules/Public/Presentation/Controllers/PublicShowPropertyController.php:13
  * @route '/propiedad/{property}'
  */
 show.head = (args: { property: string | { id: string } } | [property: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -145,8 +145,8 @@ show.head = (args: { property: string | { id: string } } | [property: string | {
 })
 
     /**
-* @see \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/ShowPropertyController.php:13
+* @see \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::__invoke
+ * @see app/Modules/Public/Presentation/Controllers/PublicShowPropertyController.php:13
  * @route '/propiedad/{property}'
  */
     const showForm = (args: { property: string | { id: string } } | [property: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -155,8 +155,8 @@ show.head = (args: { property: string | { id: string } } | [property: string | {
     })
 
             /**
-* @see \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/ShowPropertyController.php:13
+* @see \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::__invoke
+ * @see app/Modules/Public/Presentation/Controllers/PublicShowPropertyController.php:13
  * @route '/propiedad/{property}'
  */
         showForm.get = (args: { property: string | { id: string } } | [property: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -164,8 +164,8 @@ show.head = (args: { property: string | { id: string } } | [property: string | {
             method: 'get',
         })
             /**
-* @see \App\Modules\Properties\Presentation\Controllers\ShowPropertyController::__invoke
- * @see app/Modules/Properties/Presentation/Controllers/ShowPropertyController.php:13
+* @see \App\Modules\Public\Presentation\Controllers\PublicShowPropertyController::__invoke
+ * @see app/Modules/Public/Presentation/Controllers/PublicShowPropertyController.php:13
  * @route '/propiedad/{property}'
  */
         showForm.head = (args: { property: string | { id: string } } | [property: string | { id: string } ] | string | { id: string }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

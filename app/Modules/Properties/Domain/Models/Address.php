@@ -5,6 +5,7 @@ namespace App\Modules\Properties\Domain\Models;
 use App\Core\BaseModel;
 use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,5 +33,10 @@ class Address extends BaseModel
     public function addressable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function ubigeo(): BelongsTo
+    {
+        return $this->belongsTo(Ubigeo::class, 'ubigeo_id');
     }
 }

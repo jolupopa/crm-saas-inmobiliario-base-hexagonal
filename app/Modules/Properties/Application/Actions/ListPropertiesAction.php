@@ -16,7 +16,7 @@ class ListPropertiesAction extends BaseAction
     public function execute(): LengthAwarePaginator
     {
         $query = Property::query()
-            ->with(['category', 'ubigeo', 'amenities', 'agent'])
+            ->with(['category', 'amenities', 'user'])
             ->withExists('media')
             ->search($this->filters['search'] ?? null)
             ->filter($this->filters)

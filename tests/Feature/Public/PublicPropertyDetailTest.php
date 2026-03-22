@@ -44,13 +44,19 @@ class PublicPropertyDetailTest extends TestCase
             'company_id' => $this->company->id,
             'user_id' => $this->user->id,
             'category_id' => $this->category->id,
-            'ubigeo_id' => $this->ubigeo->id,
             'status' => 'published',
             'views_count' => 5
         ]);
 
-        $response = $this->get(route('public.properties.show', $property->id));
+        $property->address()->create([
+            'company_id' => $this->company->id,
+            'ubigeo_id' => $this->ubigeo->id,
+            'address' => 'Av. Siempre Viva 123',
+            'latitude' => -12.046374,
+            'longitude' => -77.042793,
+        ]);
 
+        $response = $this->get(route('public.properties.show', $property->id));
         $response->assertStatus(200);
         $response->assertInertia(fn ($page) => $page
             ->component('Public::PropertyShow', false)

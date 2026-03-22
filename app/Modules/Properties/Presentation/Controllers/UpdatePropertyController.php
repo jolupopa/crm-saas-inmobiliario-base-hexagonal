@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UpdatePropertyController extends Controller
 {
-    public function __invoke(Request $request, Property $property)
-    {
-        abort_if($property->company_id !== Auth::user()->company_id, 403);
+    public function __invoke(
+        Request $request,
+        Property $property,
+        UpdatePropertyAction $updateAction
+    ) {
+        $this->authorize('update', $property);
 
         $data = $request->validate([
             'title' => 'required|string|max:255',
@@ -26,18 +29,19 @@ class UpdatePropertyController extends Controller
             'bedrooms' => 'nullable|integer|min:0',
             'bathrooms' => 'nullable|integer|min:0',
             'parking_spots' => 'nullable|integer|min:0',
-            'address' => 'required|string|max:255',
-            'ubigeo_id' => 'required|string|max:6',
             'category_id' => 'nullable|uuid|exists:categories,id',
             'amenities' => 'nullable|array',
             'amenities.*' => 'uuid|exists:amenities,id',
+            'address' => 'required|array',
+            'address.ubigeo_id' => 'required|string|size:6',
+            'address.address' => 'required|string|max:255',
             'images' => 'nullable|array',
             'images.*' => 'image|max:5120',
         ]);
 
         $images = $request->file('images', []);
 
-        (new UpdatePropertyAction($property, $data, $images))->execute();
+        $updateAction->execute($property, $data);
 
         return redirect()->route('properties.show', $property)->with('success', 'Propiedad actualizada con éxito.');
     }

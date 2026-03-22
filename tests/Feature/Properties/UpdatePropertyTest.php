@@ -4,11 +4,47 @@ use App\Modules\Auth\Domain\Models\User;
 use App\Modules\Properties\Domain\Models\Property;
 use App\Modules\Properties\Domain\Models\Listing;
 
+use App\Modules\Properties\Domain\Models\Ubigeo;
+use App\Modules\Categories\Domain\Models\Category;
+use App\Modules\ACL\Domain\Models\Role;
+use App\Modules\ACL\Domain\Models\Permission;
+
 beforeEach(function () {
+    Ubigeo::firstOrCreate([
+        'id' => '150101'
+    ], [
+        'department' => 'Lima',
+        'province' => 'Lima',
+        'district' => 'Lima',
+    ]);
+
     $this->user = User::factory()->create();
+    
+    // Setup ACL
+    $permission = Permission::firstOrCreate([
+        'slug' => 'properties.manage'
+    ], [
+        'name' => 'Manage Properties'
+    ]);
+    
+    $role = Role::firstOrCreate([
+        'slug' => 'agent'
+    ], [
+        'name' => 'Agent'
+    ]);
+    
+    if (!$role->permissions->contains($permission->id)) {
+        $role->permissions()->attach($permission);
+    }
+    
+    $this->user->roles()->syncWithoutDetaching([$role->id]);
+
+    $this->category = Category::factory()->create(['company_id' => $this->user->company_id]);
+
     $this->property = Property::factory()->create([
         'company_id' => $this->user->company_id,
         'user_id' => $this->user->id,
+        'category_id' => $this->category->id,
         'price' => 100000,
         'status' => 'published'
     ]);
@@ -24,20 +60,26 @@ beforeEach(function () {
 });
 
 test('updating price creates a new listing snapshot', function () {
-    $data = array_merge($this->property->toArray(), [
+    $data = [
+        'title' => 'Titulo Actualizado',
+        'description' => $this->property->description,
+        'type' => $this->property->type,
+        'operation' => $this->property->operation,
         'price' => 120000,
+        'currency' => $this->property->currency,
+        'area_total' => $this->property->area_total,
         'address' => [
             'address' => 'Nueva Direccion',
-            'ubigeo_id' => '150101'
-        ]
-    ]);
+            'ubigeo_id' => '150101',
+        ],
+    ];
 
     actingAsCompany($this->user)
         ->put(route('properties.update', $this->property->id), $data)
         ->assertRedirect();
 
     $this->property->refresh();
-    expect($this->property->price)->toBe(120000.00);
+    expect((float) $this->property->price)->toBe(120000.0);
 
     // Verify snapshots
     $listings = Listing::where('listable_id', $this->property->id)->get();
@@ -54,13 +96,20 @@ test('updating price creates a new listing snapshot', function () {
 });
 
 test('updating non-critical fields does not create new listing', function () {
-    $data = array_merge($this->property->toArray(), [
-        'bedrooms' => 10, // Not critical for Listing snapshot in current logic
+    $data = [
+        'title' => $this->property->title,
+        'description' => $this->property->description,
+        'type' => $this->property->type,
+        'operation' => $this->property->operation,
+        'price' => $this->property->price,
+        'currency' => $this->property->currency,
+        'area_total' => $this->property->area_total,
+        'bedrooms' => 10,
         'address' => [
             'address' => 'Misma Direccion',
-            'ubigeo_id' => '150101'
-        ]
-    ]);
+            'ubigeo_id' => '150101',
+        ],
+    ];
 
     actingAsCompany($this->user)
         ->put(route('properties.update', $this->property->id), $data)

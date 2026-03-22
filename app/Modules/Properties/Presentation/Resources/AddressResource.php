@@ -16,6 +16,7 @@ class AddressResource extends BaseResource
             'reference' => $this->reference,
             'latitude' => (float) $this->latitude,
             'longitude' => (float) $this->longitude,
+            'ubigeo' => $this->whenLoaded('ubigeo'),
             'created_at' => $this->transformDate($this->created_at),
         ];
     }

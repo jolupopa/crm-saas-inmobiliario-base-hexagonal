@@ -46,7 +46,7 @@ export default function PropertySearch({ properties, filters, categories, amenit
                             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
                                 <div>
                                     <h1 className="text-3xl font-black text-white tracking-tight">
-                                        Luxury Estates <span className="text-[#FACC15]">in Qatar</span>
+                                        Luxury Estates <span className="text-[#FACC15]">in Trujillo</span>
                                     </h1>
                                     <p className="mt-1 text-sm text-[#A0A0A0]">
                                         {properties.meta.total} properties found matching your criteria

@@ -25,7 +25,7 @@ class Amenity extends BaseModel
 
     public function properties(): MorphToMany
     {
-        return $this->morphedByMany(Property::class, 'amenityable');
+        return $this->morphedByMany(Property::class, 'amenityable')->withoutGlobalScopes();
     }
 
     public function projects(): MorphToMany

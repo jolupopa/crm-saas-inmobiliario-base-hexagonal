@@ -3,7 +3,7 @@
 namespace App\Modules\Public\Presentation\Controllers;
 
 use App\Modules\Properties\Domain\Models\Property;
-use App\Modules\Properties\Presentation\Resources\PropertyResource;
+use App\Modules\Public\Presentation\Resources\PublicPropertyResource;
 use App\Modules\Categories\Domain\Models\Category;
 use App\Modules\Properties\Domain\Models\Amenity;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class PublicPropertyController
             ->withQueryString();
 
         return Inertia::render('Public::PropertySearch', [
-            'properties' => PropertyResource::collection($properties),
+            'properties' => PublicPropertyResource::collection($properties),
             'filters' => $filters,
             'categories' => Category::all(['id', 'name']),
             'amenities' => Amenity::all(['id', 'name']),

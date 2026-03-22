@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import ClientLayout from '@/Layouts/ClientLayout';
 import Calendar from '../Components/Calendar';
+import propertyRoutes from '@/routes/properties';
 
 interface Stats {
     total_properties: number;
@@ -95,16 +96,31 @@ export default function Dashboard({ stats }: Props) {
                         <div className="space-y-3">
                             {stats.recent_properties.length > 0 ? (
                                 stats.recent_properties.map(p => (
-                                    <div key={p.id} className="flex items-center gap-4 rounded-xl p-2.5 hover:bg-white/5 transition-colors">
-                                        {/* Simplified Property Item */}
-                                        <div className="h-10 w-12 flex-shrink-0 rounded-lg bg-[#1a1a1a] flex items-center justify-center">
-                                            <svg className="h-4 w-4 text-[#555555]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9.5L12 3l9 6.5V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" /></svg>
+                                    <Link 
+                                        key={p.id} 
+                                        href={propertyRoutes.show.url(p.id)}
+                                        className="flex items-center gap-4 rounded-xl p-2.5 hover:bg-white/5 transition-colors group/item"
+                                    >
+                                        {/* Property Thumbnail */}
+                                        <div className="h-12 w-16 flex-shrink-0 rounded-lg bg-[#333333] overflow-hidden border border-white/5 group-hover/item:border-[#FACC15]/30 transition-colors">
+                                            <img 
+                                                src={p.main_image} 
+                                                alt={p.title}
+                                                className="h-full w-full object-cover transition-transform duration-500 group-hover/item:scale-110"
+                                            />
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-xs font-bold text-white truncate">{p.title}</p>
-                                            <p className="text-[10px] text-[#A0A0A0] truncate">{p.address}</p>
+                                            <p className="text-sm font-bold text-white truncate group-hover/item:text-[#FACC15] transition-colors">{p.title}</p>
+                                            <p className="text-xs text-[#A0A0A0] truncate">
+                                                {p.address?.address || 'Sin dirección'}
+                                            </p>
                                         </div>
-                                    </div>
+                                        <div className="text-right flex-shrink-0 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                            <svg className="h-4 w-4 text-[#FACC15]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </div>
+                                    </Link>
                                 ))
                             ) : (
                                 <p className="text-sm text-[#A0A0A0] text-center py-8">No hay propiedades aún.</p>

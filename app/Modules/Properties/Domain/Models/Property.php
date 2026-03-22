@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -20,14 +21,22 @@ use App\Traits\HasModularFactory;
 
 class Property extends BaseModel implements HasMedia
 {
-    use HasCompany, InteractsWithMedia, HasFactory, HasModularFactory {
+    use HasCompany, InteractsWithMedia, HasFactory, SoftDeletes, HasModularFactory {
         HasModularFactory::newFactory insteadof HasFactory;
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (!$model->user_id && auth()->check()) {
+                $model->user_id = auth()->id();
+            }
+        });
     }
 
     protected $fillable = [
         'company_id',
         'user_id',
-        'project_id',
         'category_id',
         'title',
         'description',
@@ -58,11 +67,6 @@ class Property extends BaseModel implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function project(): BelongsTo
-    {
-        return $this->belongsTo(Project::class);
-    }
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -70,7 +74,8 @@ class Property extends BaseModel implements HasMedia
 
     public function address(): MorphOne
     {
-        return $this->morphOne(Address::class, 'addressable');
+        return $this->morphOne(Address::class, 'addressable')
+            ->withoutGlobalScopes();
     }
 
     public function listings(): MorphMany
@@ -80,7 +85,8 @@ class Property extends BaseModel implements HasMedia
 
     public function amenities(): MorphToMany
     {
-        return $this->morphToMany(Amenity::class, 'amenityable', 'amenityables');
+        return $this->morphToMany(Amenity::class, 'amenityable', 'amenityables')
+            ->withoutGlobalScopes();
     }
 
     public function activeListing()
@@ -102,7 +108,9 @@ class Property extends BaseModel implements HasMedia
 
     public function scopeFilter(Builder $query, array $filters): void
     {
-        $query->when($filters['type'] ?? null, function ($query, $type) {
+        $query->when($filters['user_id'] ?? null, function ($query, $userId) {
+            $query->where('user_id', $userId);
+        })->when($filters['type'] ?? null, function ($query, $type) {
             $query->where('type', $type);
         })->when($filters['operation'] ?? null, function ($query, $operation) {
             $query->where('operation', $operation);

@@ -12,25 +12,25 @@ class Unit extends BaseModel
 
     protected $fillable = [
         'project_id',
+        'unit_model_id',
         'identifier',
-        'type',
         'status',
-        'price',
-        'currency',
-        'area_total',
         'floor',
         'metadata',
     ];
 
     protected $casts = [
-        'price' => 'decimal:2',
-        'area_total' => 'decimal:2',
         'metadata' => 'array',
     ];
 
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function unitModel(): BelongsTo
+    {
+        return $this->belongsTo(UnitModel::class);
     }
 
     public function isAvailable(): bool

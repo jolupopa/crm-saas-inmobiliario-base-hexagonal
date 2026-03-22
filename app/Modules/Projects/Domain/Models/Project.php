@@ -36,11 +36,6 @@ class Project extends BaseModel implements HasMedia
         'metadata' => 'array',
     ];
 
-    public function properties(): HasMany
-    {
-        return $this->hasMany(Property::class);
-    }
-
     public function address(): MorphOne
     {
         return $this->morphOne(Address::class, 'addressable');
@@ -54,5 +49,15 @@ class Project extends BaseModel implements HasMedia
     public function amenities(): MorphToMany
     {
         return $this->morphToMany(Amenity::class, 'amenityable', 'amenityables');
+    }
+
+    public function unitModels(): HasMany
+    {
+        return $this->hasMany(UnitModel::class);
+    }
+
+    public function units(): HasMany
+    {
+        return $this->hasMany(Unit::class);
     }
 }

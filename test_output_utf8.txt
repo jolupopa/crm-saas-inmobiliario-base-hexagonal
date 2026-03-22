@@ -1,0 +1,72 @@
+﻿"Property found:" // tests\Feature\Properties\CreatePropertyTest.php:71
+array:26 [
+  "id" => "019cf53c-b09e-7024-a4b5-84a0ea1bad33"
+  "company_id" => "019cf53c-aff1-7181-a4bd-184a8d089abe"
+  "user_id" => "019cf53c-affc-731c-a1d1-119b3a12064b"
+  "category_id" => "019cf53c-b000-72ae-8944-4b1baae481ef"
+  "ubigeo_id" => null
+  "title" => "Penthouse de Lujo"
+  "description" => "Vista al mar increíble"
+  "type" => "apartment"
+  "operation" => "sale"
+  "price" => "150000.00"
+  "currency" => "USD"
+  "area_total" => "200.00"
+  "area_built" => "180.00"
+  "bedrooms" => 3
+  "bathrooms" => 2
+  "parking_spots" => 2
+  "address" => null
+  "latitude" => null
+  "longitude" => null
+  "status" => "published"
+  "is_featured" => false
+  "metadata" => null
+  "created_at" => "2026-03-16T06:02:01.000000Z"
+  "updated_at" => "2026-03-16T06:02:01.000000Z"
+  "deleted_at" => null
+  "views_count" => 0
+] // tests\Feature\Properties\CreatePropertyTest.php:71
+"Locations in DB:" // tests\Feature\Properties\CreatePropertyTest.php:72
+array:1 [
+  0 => {#3348
+    +"id": "019cf53c-b0a9-7272-9b03-92715425526f"
+    +"company_id": "019cf53c-aff1-7181-a4bd-184a8d089abe"
+    +"addressable_type": "App\Modules\Properties\Domain\Models\Property"
+    +"addressable_id": "019cf53c-b09e-7024-a4b5-84a0ea1bad33"
+    +"ubigeo_id": "150101"
+    +"address": "Av. Larco 123"
+    +"reference": "Frente al parque"
+    +"latitude": null
+    +"longitude": null
+    +"created_at": "2026-03-16 06:02:01"
+    +"updated_at": "2026-03-16 06:02:01"
+    +"deleted_at": null
+  }
+] // tests\Feature\Properties\CreatePropertyTest.php:72
+
+   FAIL  Tests\Feature\Properties\CreatePropertyTest
+  ⨯ can create a property with initial listing and address                                                       2.18s  
+  ✓ guest cannot create property                                                                                 0.15s  
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\CreatePropertyTest > can create a property with initial listing and address         
+  Expecting null not to be null .
+
+  at tests\Feature\Properties\CreatePropertyTest.php:76
+     72▕         dump("Locations in DB:", \Illuminate\Support\Facades\DB::table('property_locations')->get()->toArray());
+     73▕     }
+     74▕ 
+     75▕     expect($property)->not->toBeNull();
+  ➜  76▕     expect($property->refresh()->address)->not->toBeNull();
+     77▕     expect($property->address->address)->toBe('Av. Larco 123');
+     78▕ 
+     79▕     // Verify initial listing
+     80▕     $listing = Listing::where('listable_id', $property->id)->first();
+
+  1   tests\Feature\Properties\CreatePropertyTest.php:76
+
+
+  Tests:    1 failed, 1 passed (5 assertions)
+  Duration: 3.05s
+
+

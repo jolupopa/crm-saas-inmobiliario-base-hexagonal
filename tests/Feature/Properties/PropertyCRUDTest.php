@@ -85,7 +85,7 @@ test('user cannot see properties from another company', function () {
 
 test('user can create a property', function () {
     Storage::fake('public');
-    $amenity = Amenity::create(['name' => 'Piscina']);
+    $amenity = Amenity::create(['name' => 'Piscina', 'company_id' => $this->company->id]);
 
     $data = [
         'title' => 'Nuevo Departamento',
@@ -95,17 +95,21 @@ test('user can create a property', function () {
         'price' => 150000,
         'currency' => 'USD',
         'area_total' => 90,
-        'address' => 'Av. Test 123',
-        'ubigeo_id' => $this->ubigeo->id,
+        'user_id' => $this->user->id,
         'category_id' => $this->category->id,
+        'status' => 'published',
+        'address' => [
+            'address' => 'Av. Test 123',
+            'ubigeo_id' => $this->ubigeo->id,
+        ],
         'amenities' => [$amenity->id],
         'images' => [UploadedFile::fake()->image('prop.jpg')]
     ];
 
-    $response = $this->actingAs($this->user)
+    $response = actingAsCompany($this->user)
         ->post(route('properties.store'), $data);
 
-    $response->assertRedirect(route('properties.index'));
+    $response->assertRedirect(); // Controller redirects back
     $this->assertDatabaseHas('properties', ['title' => 'Nuevo Departamento', 'company_id' => $this->company->id]);
 });
 
@@ -123,11 +127,13 @@ test('user can update their property', function () {
         'price' => 2000,
         'currency' => 'USD',
         'area_total' => 120,
-        'address' => 'Nueva Direccion 456',
-        'ubigeo_id' => $this->ubigeo->id,
+        'address' => [
+            'address' => 'Nueva Direccion 456',
+            'ubigeo_id' => $this->ubigeo->id,
+        ],
     ];
 
-    $response = $this->actingAs($this->user)
+    $response = actingAsCompany($this->user)
         ->put(route('properties.update', $property), $data);
 
     $response->assertRedirect(route('properties.show', $property));
@@ -140,7 +146,7 @@ test('user can delete their property', function () {
         'user_id' => $this->user->id
     ]);
 
-    $response = $this->actingAs($this->user)
+    $response = actingAsCompany($this->user)
         ->delete(route('properties.destroy', $property));
 
     $response->assertRedirect();

@@ -17,9 +17,17 @@ test('it uses geocoding service when coordinates are missing', function () {
         'district' => 'Lima',
     ]);
 
+    $category = \App\Modules\Categories\Domain\Models\Category::create([
+        'company_id' => $company->id,
+        'name' => 'Apartment',
+        'slug' => 'apartment',
+        'type' => 'property',
+    ]);
+
     $details = [
         'company_id' => $company->id,
         'user_id' => $agent->id,
+        'category_id' => $category->id,
         'ubigeo_id' => $ubigeo->id,
         'title' => 'Dpto con Geocoding',
         'type' => 'apartment',
@@ -38,6 +46,8 @@ test('it uses geocoding service when coordinates are missing', function () {
     $action = new PublishPropertyAction($details, [], $mockGeocoder);
     $property = $action->execute();
 
-    expect($property->latitude)->toBe(-12.1223);
-    expect($property->longitude)->toBe(-77.0305);
+    $property->refresh();
+    expect($property->address->latitude)->toBe(-12.1223);
+    expect($property->address->longitude)->toBe(-77.0305);
+    expect($property->address->ubigeo_id)->toBe('150101');
 });

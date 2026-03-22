@@ -34,7 +34,7 @@ class PublishPropertyAction extends BaseAction
             $property = Property::create([
                 'company_id' => $this->details['company_id'],
                 'user_id' => $this->details['user_id'],
-                'ubigeo_id' => $this->details['ubigeo_id'],
+                'category_id' => $this->details['category_id'] ?? null,
                 'title' => $this->details['title'],
                 'description' => $this->details['description'] ?? null,
                 'type' => $this->details['type'],
@@ -46,11 +46,16 @@ class PublishPropertyAction extends BaseAction
                 'bedrooms' => $this->details['bedrooms'] ?? 0,
                 'bathrooms' => $this->details['bathrooms'] ?? 0,
                 'parking_spots' => $this->details['parking_spots'] ?? 0,
+                'status' => 'published',
+                'metadata' => $this->details['metadata'] ?? [],
+            ]);
+
+            $property->address()->create([
+                'company_id' => $property->company_id,
                 'address' => $this->details['address'],
                 'latitude' => $lat,
                 'longitude' => $lng,
-                'status' => 'published',
-                'metadata' => $this->details['metadata'] ?? [],
+                'ubigeo_id' => $this->details['ubigeo_id'],
             ]);
 
             if (!empty($this->amenityIds)) {

@@ -16,6 +16,7 @@ class PropertyResource extends BaseResource
             'type' => $this->type,
             'operation' => $this->operation,
             'price' => (float) $this->price,
+            'price_formatted' => $this->currency . ' ' . number_format($this->price, 2),
             'currency' => $this->currency,
             'area_total' => (float) $this->area_total,
             'area_built' => (float) $this->area_built,
@@ -32,6 +33,7 @@ class PropertyResource extends BaseResource
                 'id' => $this->user->id,
                 'name' => $this->user->name,
             ],
+            'category' => new \App\Core\BaseResource($this->whenLoaded('category')),
             'main_image' => $this->getFirstMediaUrl('images') ?: '/images/placeholder-property.jpg',
             'created_at' => $this->transformDate($this->created_at),
         ];

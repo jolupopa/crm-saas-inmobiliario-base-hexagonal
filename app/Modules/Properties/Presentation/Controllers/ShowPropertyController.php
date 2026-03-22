@@ -12,6 +12,8 @@ class ShowPropertyController extends Controller
 {
     public function __invoke(Property $property): Response
     {
+        abort_if($property->company_id !== auth()->user()->company_id, 403);
+
         $property->load(['address', 'amenities', 'listings', 'user']);
 
         return Inertia::render('Modules/Properties/Pages/Show', [

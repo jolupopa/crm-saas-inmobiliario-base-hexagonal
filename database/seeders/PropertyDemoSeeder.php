@@ -31,7 +31,12 @@ class PropertyDemoSeeder extends Seeder
         ];
         $amenityModels = [];
         foreach ($amenities as $item) {
-            $amenityModels[] = Amenity::firstOrCreate(['name' => $item], ['icon' => 'home']);
+            $amenityModels[] = Amenity::firstOrCreate([
+                'name' => $item, 
+                'company_id' => $company->id
+            ], [
+                'icon' => 'home'
+            ]);
         }
 
         // 2. Create 5 Owners
@@ -54,14 +59,12 @@ class PropertyDemoSeeder extends Seeder
 
         // 3. Create 10 Properties per Owner (Total 50)
         $imagePool = [
-            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1572120339554-d7262ff0306c?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1600585154340-be6199f7a09f?auto=format&fit=crop&w=800&q=80'
+            public_path('seed-images/apt_1.png'),
+            public_path('seed-images/apt_2.png'),
+            public_path('seed-images/apt_3.png'),
+            public_path('seed-images/house_1.png'),
+            public_path('seed-images/house_2.png'),
+            public_path('seed-images/house_3.png'),
         ];
 
         foreach ($owners as $owner) {
@@ -118,13 +121,19 @@ class PropertyDemoSeeder extends Seeder
                     collect($amenityModels)->random(rand(3, 5))->pluck('id')
                 );
 
-                // Add 4-6 images from Unsplash
+                // Add 4-6 images (local fallback or placeholder)
                 $randomImages = collect($imagePool)->random(rand(4, 6));
-                foreach ($randomImages as $imageUrl) {
+                foreach ($randomImages as $imagePath) {
                     try {
-                        $property->addMediaFromUrl($imageUrl)
-                            ->preservingOriginal()
-                            ->toMediaCollection('gallery');
+                        if (file_exists($imagePath)) {
+                            $property->addMedia($imagePath)
+                                ->preservingOriginal()
+                                ->toMediaCollection('gallery');
+                        } else {
+                            // Fallback to placeholder if local file is missing
+                            $property->addMediaFromUrl("https://loremflickr.com/800/600/modern,house,apartment")
+                                ->toMediaCollection('gallery');
+                        }
                     } catch (\Exception $e) {
                         \Illuminate\Support\Facades\Log::error("Media Seeding Failed for {$property->id}: " . $e->getMessage());
                     }

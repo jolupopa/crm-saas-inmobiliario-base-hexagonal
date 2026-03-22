@@ -33,7 +33,7 @@ export default function Welcome({ featured = { data: [] }, categories = [] }: Pr
                     <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
                         <span className="mb-4 text-xs font-black uppercase tracking-[0.4em] text-[#FACC15]">Premium Real Estate</span>
                         <h1 className="max-w-4xl text-5xl font-black tracking-tight text-white md:text-7xl">
-                            Find Your <span className="italic text-[#FACC15]">Golden Address</span> <br /> In Qatar
+                            Find Your <span className="italic text-[#FACC15]">Golden Address</span> <br /> In Trujillo
                         </h1>
                         <p className="mt-6 max-w-2xl text-lg text-[#D1D1D1]">
                             Experience the pinnacle of luxury living. Discover exclusive penthouses, waterfront villas, and elite investment opportunities in the heart of Doha.

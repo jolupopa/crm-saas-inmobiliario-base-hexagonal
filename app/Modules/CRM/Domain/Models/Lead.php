@@ -6,11 +6,16 @@ use App\Core\BaseModel;
 use App\Modules\Auth\Domain\Models\User;
 use App\Modules\Company\Domain\Models\Company;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+use App\Traits\HasModularFactory;
 
 class Lead extends BaseModel
 {
-    use SoftDeletes;
+    use SoftDeletes, HasFactory, HasModularFactory {
+        HasModularFactory::newFactory insteadof HasFactory;
+    }
 
     protected $fillable = [
         'company_id',

@@ -119,7 +119,10 @@ class DatabaseSeeder extends Seeder
         $amenities = ['Piscina', 'Gimnasio', 'Seguridad 24/7', 'Área de Parrillas', 'Elevador'];
         $amenityModels = [];
         foreach ($amenities as $name) {
-            $amenityModels[] = Amenity::firstOrCreate(['name' => $name]);
+            $amenityModels[] = Amenity::firstOrCreate([
+                'name' => $name,
+                'company_id' => $company->id
+            ]);
         }
 
         // 5. Pipeline Stages

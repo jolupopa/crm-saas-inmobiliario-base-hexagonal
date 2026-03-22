@@ -16,9 +16,7 @@ class PropertyFactory extends Factory
     public function definition(): array
     {
         return [
-            'company_id' => Company::factory(),
             'user_id' => User::factory(),
-            'project_id' => null, // Opcional
             'category_id' => Category::factory(),
             'title' => fake()->sentence(4),
             'description' => fake()->paragraph(),

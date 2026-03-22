@@ -1,0 +1,444 @@
+﻿
+   PASS  Tests\Feature\ACL\ACLTest
+  ✓ a user can be assigned a role                                                                                5.68s  
+  ✓ a user can have permissions through roles                                                                    0.14s  
+  ✓ a user can have direct permissions without roles                                                             0.07s  
+  ✓ superadmin bypasses all permission checks                                                                    0.06s  
+  ✓ multiple roles can be checked at once                                                                        0.06s  
+
+   PASS  Tests\Feature\Admin\SuperAdminStatsTest
+  ✓ it can retrieve global stats for super admin                                                                 0.62s  
+
+   PASS  Tests\Feature\Analytics\CompanyMetricsTest
+  ✓ it can retrieve company insights                                                                             0.08s  
+
+   PASS  Tests\Feature\ArchitectureTest
+  ✓ globals                                                                                                      5.79s  
+  ✓ models                                                                                                       0.72s  
+  ✓ controllers                                                                                                  0.19s  
+  ✓ uuids                                                                                                        0.55s  
+
+   PASS  Tests\Feature\Auth\RegistrationTest
+  ✓ it can register a new user linked to a company                                                               1.38s  
+
+   PASS  Tests\Feature\Auth\ResetPasswordTest
+  ✓ reset password page is accessible with valid token                                                           0.49s  
+  ✓ forgot password page is accessible to guests                                                                 0.09s  
+
+   PASS  Tests\Feature\Auth\TwoFactorAuthTest
+  ✓ authenticated user can enable two factor authentication                                                      0.23s  
+  ✓ authenticated user can disable two factor authentication                                                     0.11s  
+  ✓ two factor challenge page renders on Inertia                                                                 0.08s  
+
+   PASS  Tests\Feature\Billing\CreditSystemTest
+  ✓ it can buy and consume credits                                                                               0.10s  
+  ✓ it throws exception on insufficient balance                                                                  0.11s  
+
+   PASS  Tests\Feature\Billing\SubscriptionTest
+  ✓ it can subscribe a company to a plan                                                                         0.09s  
+  ✓ it cancels previous subscriptions when subscribing to new plan                                               0.06s  
+
+   PASS  Tests\Feature\CRM\AIScoringTest
+  ✓ it can score a lead using AI service                                                                         0.22s  
+
+   PASS  Tests\Feature\CRM\PipelineTest
+  ✓ it can advance a lead through the pipeline                                                                   0.06s  
+  ✓ it prevents advancing to a stage of another company                                                          0.09s  
+
+   PASS  Tests\Feature\Categories\CategoryManagementTest
+  ✓ it can list categories filtered by type property                                                             0.16s  
+  ✓ it can list categories filtered by type project                                                              0.08s  
+
+   PASS  Tests\Feature\Company\AddMemberTest
+  ✓ it can add a member to a company                                                                             0.07s  
+
+   PASS  Tests\Feature\Company\CreateCompanyTest
+  ✓ it can create a company through the action                                                                   0.09s  
+
+   PASS  Tests\Feature\Company\StoreCompanyControllerTest
+  ✓ it can store a company through the controller                                                                0.09s  
+
+   PASS  Tests\Feature\ExampleTest
+  ✓ the application returns a successful response                                                                0.07s  
+
+   PASS  Tests\Feature\Feature\Properties\PropertyCRUDTest
+  ✓ example                                                                                                      0.07s  
+
+   PASS  Tests\Feature\Profile\UpdateAvatarTest
+  ✓ authenticated user can upload an avatar                                                                      0.65s  
+  ✓ unauthenticated user cannot upload avatar                                                                    0.08s  
+  ✓ avatar upload rejects non-image files                                                                        0.14s  
+  ✓ uploading new avatar deletes the old one                                                                     0.12s  
+
+   PASS  Tests\Feature\Profile\UpdateProfileTest
+  ✓ authenticated user can view their profile                                                                    0.16s  
+  ✓ authenticated user can update their profile information                                                      0.07s  
+  ✓ profile update rejects duplicate email from another user                                                     0.07s  
+  ✓ profile update accepts same email for the same user                                                          0.07s  
+  ✓ unauthenticated user cannot update profile                                                                   0.07s  
+  ✓ profile response does not expose sensitive data                                                              0.10s  
+
+   PASS  Tests\Feature\Projects\ProjectCreationTest
+  ✓ it can create a real estate project                                                                          0.11s  
+
+   PASS  Tests\Feature\Projects\UnitInventoryTest
+  ✓ it can manage unit state transitions                                                                         0.07s  
+"Property found:" // tests\Feature\Properties\CreatePropertyTest.php:71
+array:26 [
+  "id" => "019cf541-4618-7037-b436-05b589a4ebb1"
+  "company_id" => "019cf541-45fa-7234-8280-19514021cf5e"
+  "user_id" => "019cf541-45fc-734a-9424-cf05a5abf56d"
+  "category_id" => "019cf541-45fe-720b-a873-04a25b258a8c"
+  "ubigeo_id" => null
+  "title" => "Penthouse de Lujo"
+  "description" => "Vista al mar increíble"
+  "type" => "apartment"
+  "operation" => "sale"
+  "price" => "150000.00"
+  "currency" => "USD"
+  "area_total" => "200.00"
+  "area_built" => "180.00"
+  "bedrooms" => 3
+  "bathrooms" => 2
+  "parking_spots" => 2
+  "address" => null
+  "latitude" => null
+  "longitude" => null
+  "status" => "published"
+  "is_featured" => false
+  "metadata" => null
+  "created_at" => "2026-03-16T06:07:01.000000Z"
+  "updated_at" => "2026-03-16T06:07:01.000000Z"
+  "deleted_at" => null
+  "views_count" => 0
+] // tests\Feature\Properties\CreatePropertyTest.php:71
+"Locations in DB:" // tests\Feature\Properties\CreatePropertyTest.php:72
+array:1 [
+  0 => {#42392
+    +"id": "019cf541-461a-73ab-863d-cd7fba3c20f8"
+    +"company_id": "019cf541-45fa-7234-8280-19514021cf5e"
+    +"addressable_type": "App\Modules\Properties\Domain\Models\Property"
+    +"addressable_id": "019cf541-4618-7037-b436-05b589a4ebb1"
+    +"ubigeo_id": "150101"
+    +"address": "Av. Larco 123"
+    +"reference": "Frente al parque"
+    +"latitude": null
+    +"longitude": null
+    +"created_at": "2026-03-16 06:07:01"
+    +"updated_at": "2026-03-16 06:07:01"
+    +"deleted_at": null
+  }
+] // tests\Feature\Properties\CreatePropertyTest.php:72
+
+   FAIL  Tests\Feature\Properties\CreatePropertyTest
+  ⨯ can create a property with initial listing and address                                                       0.59s  
+  ✓ guest cannot create property                                                                                 0.32s  
+
+   FAIL  Tests\Feature\Properties\GeocodingIntegrationTest
+  ⨯ it uses geocoding service when coordinates are missing                                                       0.21s  
+
+   FAIL  Tests\Feature\Properties\PropertyCRUDTest
+  ✓ authenticated user can list their company properties                                                         0.40s  
+  ⨯ user cannot see properties from another company                                                              0.25s  
+  ⨯ user can create a property                                                                                   0.15s  
+  ⨯ user can update their property                                                                               4.64s  
+  ⨯ user can delete their property                                                                               0.23s  
+
+   FAIL  Tests\Feature\Properties\PropertyTenancyTest
+  ⨯ user cannot see properties from other company                                                                0.21s  
+  ⨯ property is automatically assigned to user company                                                           0.12s  
+
+   FAIL  Tests\Feature\Properties\PublishPropertyTest
+  ⨯ it can publish a property with amenities                                                                     0.59s  
+
+   FAIL  Tests\Feature\Properties\UpdatePropertyTest
+  ⨯ updating price creates a new listing snapshot
+  ⨯ updating non-critical fields does not create new listing
+
+   PASS  Tests\Feature\Public\PublicPropertyDetailTest
+  ✓ any user can view a published property detail                                                                0.15s  
+  ✓ users cannot view draft properties publicly                                                                  0.18s  
+
+   PASS  Tests\Feature\WelcomeTest
+  ✓ welcome page is rendered                                                                                     0.09s  
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\CreatePropertyTest > can create a property with initial listing and address         
+  Expecting null not to be null .
+
+  at tests\Feature\Properties\CreatePropertyTest.php:76
+     72▕         dump("Locations in DB:", \Illuminate\Support\Facades\DB::table('property_locations')->get()->toArray());
+     73▕     }
+     74▕ 
+     75▕     expect($property)->not->toBeNull();
+  ➜  76▕     expect($property->refresh()->address)->not->toBeNull();
+     77▕     expect($property->address->address)->toBe('Av. Larco 123');
+     78▕ 
+     79▕     // Verify initial listing
+     80▕     $listing = Listing::where('listable_id', $property->id)->first();
+
+  1   tests\Feature\Properties\CreatePropertyTest.php:76
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\GeocodingIntegrationTest > it uses geocoding service when coordi…  QueryException   
+  SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: properties.category_id (Connection: sqlite, Database: :memory:, SQL: insert into "properties" ("company_id", "user_id", "ubigeo_id", "title", "description", "type", "operation", "price", "currency", "area_total", "area_built", "bedrooms", "bathrooms", "parking_spots", "status", "metadata", "id", "updated_at", "created_at") values (019cf541-4a19-7301-8cca-9cb985d72009, 019cf541-4a1e-709a-a725-fc88907f8a40, 150101, Dpto con Geocoding, ?, apartment, sale, 200000, USD, 100, ?, 0, 0, 0, published, [], 019cf541-4a36-7304-862e-e840b30d1c00, 2026-03-16 06:07:02, 2026-03-16 06:07:02))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+    580▕             $this->bindValues($statement, $this->prepareBindings($bindings));
+    581▕ 
+    582▕             $this->recordsHaveBeenModified();
+    583▕ 
+  ➜ 584▕             return $statement->execute();
+    585▕         });
+    586▕     }
+    587▕ 
+    588▕     /**
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:827
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\PropertyCRUDTest > user cannot see properties from another company                  
+  Expected response status code [403] but received 200.
+Failed asserting that 200 is identical to 403.
+
+  at tests\Feature\Properties\PropertyCRUDTest.php:83
+     79▕ 
+     80▕     $response = $this->actingAs($this->user)
+     81▕         ->get(route('properties.show', $otherProperty));
+     82▕ 
+  ➜  83▕     $response->assertStatus(403);
+     84▕ });
+     85▕ 
+     86▕ test('user can create a property', function () {
+     87▕     Storage::fake('public');
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\PropertyCRUDTest > user can create a property                      QueryException   
+  SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: amenities.company_id (Connection: sqlite, Database: :memory:, SQL: insert into "amenities" ("name", "id", "updated_at", "created_at") values (Piscina, 019cf541-4d9f-7308-a93e-061601f83114, 2026-03-16 06:07:03, 2026-03-16 06:07:03))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+    580▕             $this->bindValues($statement, $this->prepareBindings($bindings));
+    581▕ 
+    582▕             $this->recordsHaveBeenModified();
+    583▕ 
+  ➜ 584▕             return $statement->execute();
+    585▕         });
+    586▕     }
+    587▕ 
+    588▕     /**
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:827
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\PropertyCRUDTest > user can update their property                                   
+  Expected response status code [201, 301, 302, 303, 307, 308] but received 500.
+Failed asserting that false is true.
+
+The following exception occurred during the last request:
+
+TypeError: App\Modules\Properties\Application\Actions\UpdatePropertyAction::__construct(): Argument #1 ($listingAction) must be of type App\Modules\Properties\Application\Actions\CreateOrUpdateListingAction, App\Modules\Properties\Domain\Models\Property given, called in C:\milaragon\www\my-crm\app\Modules\Properties\Presentation\Controllers\UpdatePropertyController.php on line 40 and defined in C:\milaragon\www\my-crm\app\Modules\Properties\Application\Actions\UpdatePropertyAction.php:11
+Stack trace:
+#0 C:\milaragon\www\my-crm\app\Modules\Properties\Presentation\Controllers\UpdatePropertyController.php(40): App\Modules\Properties\Application\Actions\UpdatePropertyAction->__construct(Object(App\Modules\Properties\Domain\Models\Property), Array, Array)
+#1 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(46): App\Modules\Properties\Presentation\Controllers\UpdatePropertyController->__invoke(Object(Illuminate\Http\Request), Object(App\Modules\Properties\Domain\Models\Property))
+#2 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Route.php(265): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(App\Modules\Properties\Presentation\Controllers\UpdatePropertyController), '__invoke')
+#3 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Route.php(211): Illuminate\Routing\Route->runController()
+#4 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Router.php(822): Illuminate\Routing\Route->run()
+#5 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}(Object(Illuminate\Http\Request))
+#6 C:\milaragon\www\my-crm\app\Http\Middleware\CheckPermission.php(22): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#7 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): App\Http\Middleware\CheckPermission->handle(Object(Illuminate\Http\Request), Object(Closure), 'properties.mana...')
+#8 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Auth\Middleware\EnsureEmailIsVerified.php(41): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#9 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\EnsureEmailIsVerified->handle(Object(Illuminate\Http\Request), Object(Closure))
+#10 C:\milaragon\www\my-crm\vendor\inertiajs\inertia-laravel\src\Middleware.php(122): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#11 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Inertia\Middleware->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#13 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Auth\Middleware\Authenticate.php(63): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#15 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Auth\Middleware\Authenticate->handle(Object(Illuminate\Http\Request), Object(Closure))
+#16 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken.php(87): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#17 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle(Object(Illuminate\Http\Request), Object(Closure))
+#18 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php(48): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#19 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\View\Middleware\ShareErrorsFromSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#20 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(120): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#21 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php(63): Illuminate\Session\Middleware\StartSession->handleStatefulRequest(Object(Illuminate\Http\Request), Object(Illuminate\Session\Store), Object(Closure))
+#22 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Session\Middleware\StartSession->handle(Object(Illuminate\Http\Request), Object(Closure))
+#23 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse.php(36): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#24 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle(Object(Illuminate\Http\Request), Object(Closure))
+#25 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Cookie\Middleware\EncryptCookies.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#26 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Cookie\Middleware\EncryptCookies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#27 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#28 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Router.php(821): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#29 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Router.php(800): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#30 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Router.php(764): Illuminate\Routing\Router->runRoute(Object(Illuminate\Http\Request), Object(Illuminate\Routing\Route))
+#31 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Routing\Router.php(753): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#32 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(200): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#33 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}(Object(Illuminate\Http\Request))
+#34 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}(Object(Illuminate\Http\Request))
+#35 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#36 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle(Object(Illuminate\Http\Request), Object(Closure))
+#37 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#38 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle(Object(Illuminate\Http\Request), Object(Closure))
+#39 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle(Object(Illuminate\Http\Request), Object(Closure))
+#40 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#41 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle(Object(Illuminate\Http\Request), Object(Closure))
+#42 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#43 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle(Object(Illuminate\Http\Request), Object(Closure))
+#44 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php(61): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#45 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#46 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#47 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle(Object(Illuminate\Http\Request), Object(Closure))
+#48 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#49 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle(Object(Illuminate\Http\Request), Object(Closure))
+#50 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Http\Middleware\ValidatePathEncoding.php(26): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#51 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle(Object(Illuminate\Http\Request), Object(Closure))
+#52 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}(Object(Illuminate\Http\Request))
+#53 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(175): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#54 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#55 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(607): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#56 C:\milaragon\www\my-crm\vendor\laravel\framework\src\Illuminate\Foundation\Testing\Concerns\MakesHttpRequests.php(427): Illuminate\Foundation\Testing\TestCase->call('PUT', 'http://my-crm.t...', Array, Array, Array, Array)
+#57 C:\milaragon\www\my-crm\tests\Feature\Properties\PropertyCRUDTest.php(131): Illuminate\Foundation\Testing\TestCase->put('http://my-crm.t...', Array)
+#58 C:\milaragon\www\my-crm\vendor\pestphp\pest\src\Factories\TestCaseMethodFactory.php(168): P\Tests\Feature\Properties\PropertyCRUDTest->{closure:C:\milaragon\www\my-crm\tests\Feature\Properties\PropertyCRUDTest.php:112}()
+#59 [internal function]: P\Tests\Feature\Properties\PropertyCRUDTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():158}()
+#60 C:\milaragon\www\my-crm\vendor\pestphp\pest\src\Concerns\Testable.php(419): call_user_func_array(Object(Closure), Array)
+#61 C:\milaragon\www\my-crm\vendor\pestphp\pest\src\Support\ExceptionTrace.php(26): P\Tests\Feature\Properties\PropertyCRUDTest->{closure:Pest\Concerns\Testable::__callClosure():419}()
+#62 C:\milaragon\www\my-crm\vendor\pestphp\pest\src\Concerns\Testable.php(419): Pest\Support\ExceptionTrace::ensure(Object(Closure))
+#63 C:\milaragon\www\my-crm\vendor\pestphp\pest\src\Concerns\Testable.php(321): P\Tests\Feature\Properties\PropertyCRUDTest->__callClosure(Object(Closure), Array)
+#64 C:\milaragon\www\my-crm\vendor\pestphp\pest\src\Factories\TestCaseFactory.php(169) : eval()'d code(44): P\Tests\Feature\Properties\PropertyCRUDTest->__runTest(Object(Closure))
+#65 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\Framework\TestCase.php(1667): P\Tests\Feature\Properties\PropertyCRUDTest->__pest_evaluable_user_can_update_their_property()
+#66 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\Framework\TestCase.php(519): PHPUnit\Framework\TestCase->runTest()
+#67 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\Framework\TestRunner\TestRunner.php(87): PHPUnit\Framework\TestCase->runBare()
+#68 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\Framework\TestCase.php(365): PHPUnit\Framework\TestRunner->run(Object(P\Tests\Feature\Properties\PropertyCRUDTest))
+#69 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestCase->run()
+#70 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\Framework\TestSuite.php(369): PHPUnit\Framework\TestSuite->run()
+#71 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\TextUI\TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#72 C:\milaragon\www\my-crm\vendor\phpunit\phpunit\src\TextUI\Application.php(211): PHPUnit\TextUI\TestRunner->run(Object(PHPUnit\TextUI\Configuration\Configuration), Object(PHPUnit\Runner\ResultCache\DefaultResultCache), Object(PHPUnit\Framework\TestSuite))
+#73 C:\milaragon\www\my-crm\vendor\pestphp\pest\src\Kernel.php(103): PHPUnit\TextUI\Application->run(Array)
+#74 C:\milaragon\www\my-crm\vendor\pestphp\pest\bin\pest(184): Pest\Kernel->handle(Array, Array)
+#75 C:\milaragon\www\my-crm\vendor\pestphp\pest\bin\pest(192): {closure:C:\milaragon\www\my-crm\vendor\pestphp\pest\bin\pest:18}()
+#76 {main}
+
+----------------------------------------------------------------------------------
+
+App\Modules\Properties\Application\Actions\UpdatePropertyAction::__construct(): Argument #1 ($listingAction) must be of type App\Modules\Properties\Application\Actions\CreateOrUpdateListingAction, App\Modules\Properties\Domain\Models\Property given, called in C:\milaragon\www\my-crm\app\Modules\Properties\Presentation\Controllers\UpdatePropertyController.php on line 40
+
+  at tests\Feature\Properties\PropertyCRUDTest.php:133
+    129▕ 
+    130▕     $response = $this->actingAs($this->user)
+    131▕         ->put(route('properties.update', $property), $data);
+    132▕ 
+  ➜ 133▕     $response->assertRedirect(route('properties.show', $property));
+    134▕     $this->assertDatabaseHas('properties', ['id' => $property->id, 'title' => 'Titulo Actualizado']);
+    135▕ });
+    136▕ 
+    137▕ test('user can delete their property', function () {
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\PropertyCRUDTest > user can delete their property                                   
+  Failed asserting that any soft deleted row in the table [properties] matches the attributes {"id":"019cf541-6081-72d0-a0de-42aa44c57377"}.
+
+The table is empty.
+
+  at tests\Feature\Properties\PropertyCRUDTest.php:147
+    143▕     $response = $this->actingAs($this->user)
+    144▕         ->delete(route('properties.destroy', $property));
+    145▕ 
+    146▕     $response->assertRedirect();
+  ➜ 147▕     $this->assertSoftDeleted('properties', ['id' => $property->id]);
+    148▕ });
+    149▕
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\PropertyTenancyTest > user cannot see properties from other comp…  QueryException   
+  SQLSTATE[23000]: Integrity constraint violation: 19 FOREIGN KEY constraint failed (Connection: sqlite, Database: :memory:, SQL: insert into "properties" ("user_id", "category_id", "title", "description", "type", "operation", "price", "currency", "area_total", "area_built", "bedrooms", "bathrooms", "parking_spots", "status", "is_featured", "ubigeo_id", "metadata", "company_id", "id", "updated_at", "created_at") values (019cf541-61a1-72d5-91d1-49f51b91ef54, 019cf541-61a7-72f2-a1c6-b827adebd2be, Aut et veritatis impedit., Nulla aliquam ad non aut a itaque perspiciatis. Aut libero voluptate harum. Atque quo consequatur laborum., land, rent, 131858.6, USD, 311.62, 409.57, 5, 3, 0, published, 0, 150101, [], 019cf541-6194-7024-ab1f-6d8c9fb9e931, 019cf541-61aa-716e-98ee-886772ba5eec, 2026-03-16 06:07:08, 2026-03-16 06:07:08))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+    580▕             $this->bindValues($statement, $this->prepareBindings($bindings));
+    581▕ 
+    582▕             $this->recordsHaveBeenModified();
+    583▕ 
+  ➜ 584▕             return $statement->execute();
+    585▕         });
+    586▕     }
+    587▕ 
+    588▕     /**
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:827
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\PropertyTenancyTest > property is automatically assigned to user…  QueryException   
+  SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: properties.user_id (Connection: sqlite, Database: :memory:, SQL: insert into "properties" ("title", "price", "id", "company_id", "updated_at", "created_at") values (Test, 100, 019cf541-622c-73c3-bd07-9905f5cdfd4c, 019cf541-6225-71f0-83e2-84fd38c7c91a, 2026-03-16 06:07:08, 2026-03-16 06:07:08))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+    580▕             $this->bindValues($statement, $this->prepareBindings($bindings));
+    581▕ 
+    582▕             $this->recordsHaveBeenModified();
+    583▕ 
+  ➜ 584▕             return $statement->execute();
+    585▕         });
+    586▕     }
+    587▕ 
+    588▕     /**
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:827
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\PublishPropertyTest > it can publish a property with amenities     QueryException   
+  SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: amenities.company_id (Connection: sqlite, Database: :memory:, SQL: insert into "amenities" ("name", "id", "updated_at", "created_at") values (Piscina, 019cf541-64a3-709a-bf6a-32026d4e0181, 2026-03-16 06:07:09, 2026-03-16 06:07:09))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+    580▕             $this->bindValues($statement, $this->prepareBindings($bindings));
+    581▕ 
+    582▕             $this->recordsHaveBeenModified();
+    583▕ 
+  ➜ 584▕             return $statement->execute();
+    585▕         });
+    586▕     }
+    587▕ 
+    588▕     /**
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:827
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\UpdatePropertyTest > updating price creates a new listing snapsh…  QueryException   
+  SQLSTATE[23000]: Integrity constraint violation: 19 FOREIGN KEY constraint failed (Connection: sqlite, Database: :memory:, SQL: insert into "properties" ("user_id", "category_id", "title", "description", "type", "operation", "price", "currency", "area_total", "area_built", "bedrooms", "bathrooms", "parking_spots", "status", "is_featured", "ubigeo_id", "metadata", "company_id", "id", "updated_at", "created_at") values (019cf541-6717-701a-8883-21fb82772d05, 019cf541-6740-72ae-86f3-a37ca1d40955, Voluptas blanditiis distinctio., Assumenda consequatur voluptate maxime dicta voluptatum aliquam quidem reiciendis. Nostrum doloribus ut suscipit quos. Enim a harum voluptates corporis temporibus et. Et ratione eum architecto qui. Voluptates suscipit et provident repellat minima repellendus voluptatem animi., house, rent, 100000, USD, 279.73, 145.61, 2, 4, 0, published, 0, 150101, [], 019cf541-6714-7083-b895-92b752c8e18f, 019cf541-6744-70f5-a8bb-f5216b1a032f, 2026-03-16 06:07:10, 2026-03-16 06:07:10))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+    580▕             $this->bindValues($statement, $this->prepareBindings($bindings));
+    581▕ 
+    582▕             $this->recordsHaveBeenModified();
+    583▕ 
+  ➜ 584▕             return $statement->execute();
+    585▕         });
+    586▕     }
+    587▕ 
+    588▕     /**
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:827
+
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Properties\UpdatePropertyTest > updating non-critical fields does not creat…  QueryException   
+  SQLSTATE[23000]: Integrity constraint violation: 19 FOREIGN KEY constraint failed (Connection: sqlite, Database: :memory:, SQL: insert into "properties" ("user_id", "category_id", "title", "description", "type", "operation", "price", "currency", "area_total", "area_built", "bedrooms", "bathrooms", "parking_spots", "status", "is_featured", "ubigeo_id", "metadata", "company_id", "id", "updated_at", "created_at") values (019cf541-6796-72d6-85e3-c34dfa6d5b15, 019cf541-6799-72b3-9a14-0d1c27ca8138, Velit deleniti eaque reiciendis., Nihil dolores velit tempore magnam sint dolorem natus. Repellendus qui quaerat molestias sapiente dolorem. Consequatur consequatur eos quidem molestiae non reprehenderit laborum. Id optio aut maiores doloribus ullam vel nulla. Quia dicta et aut et ad sapiente non., house, sale, 100000, USD, 175.71, 148.52, 1, 1, 0, published, 0, 150101, [], 019cf541-6794-7100-857d-8244395e6b5d, 019cf541-679b-7201-acfe-a82668d48033, 2026-03-16 06:07:10, 2026-03-16 06:07:10))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+    580▕             $this->bindValues($statement, $this->prepareBindings($bindings));
+    581▕ 
+    582▕             $this->recordsHaveBeenModified();
+    583▕ 
+  ➜ 584▕             return $statement->execute();
+    585▕         });
+    586▕     }
+    587▕ 
+    588▕     /**
+
+  1   vendor\laravel\framework\src\Illuminate\Database\Connection.php:584
+  2   vendor\laravel\framework\src\Illuminate\Database\Connection.php:827
+
+
+  Tests:    11 failed, 48 passed (187 assertions)
+  Duration: 32.98s
+
+

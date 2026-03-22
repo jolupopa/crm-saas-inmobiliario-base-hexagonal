@@ -10,7 +10,7 @@ class DeletePropertyController extends Controller
 {
     public function __invoke(Property $property)
     {
-        abort_if($property->company_id !== Auth::user()->company_id, 403);
+        $this->authorize('delete', $property);
 
         $property->delete();
 

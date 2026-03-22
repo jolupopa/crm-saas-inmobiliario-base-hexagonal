@@ -15,11 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('company_id')->constrained()->cascadeOnDelete();
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete(); // Agente responsable
-            $table->foreignUuid('project_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignUuid('category_id')->constrained()->cascadeOnDelete();
-            
-            $table->string('ubigeo_id', 6);
-            $table->foreign('ubigeo_id')->references('id')->on('ubigeos');
             
             $table->string('title');
             $table->text('description')->nullable();
@@ -34,12 +30,11 @@ return new class extends Migration
             $table->integer('bathrooms')->default(0);
             $table->integer('parking_spots')->default(0);
             
-            $table->string('address');
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
+
             
             $table->enum('status', ['draft', 'published', 'archived', 'sold', 'rented'])->default('draft');
             $table->boolean('is_featured')->default(false);
+            $table->bigInteger('views_count')->default(0);
             
             $table->json('metadata')->nullable();
             $table->timestamps();

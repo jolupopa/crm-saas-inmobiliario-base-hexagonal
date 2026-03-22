@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('two_factor_recovery_codes')->nullable();
             $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('avatar_url')->nullable();
+            $table->integer('property_limit')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

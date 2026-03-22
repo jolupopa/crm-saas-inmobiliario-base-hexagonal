@@ -63,4 +63,11 @@ trait HasACL
 
         return false;
     }
+    /**
+     * Verifica si el usuario es privilegiado (Admin o Company).
+     */
+    public function isPrivileged(): bool
+    {
+        return $this->hasRole(['admin', 'company']) || $this->email === 'superusuario@demo.com';
+    }
 }

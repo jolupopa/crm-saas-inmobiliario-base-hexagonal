@@ -14,14 +14,21 @@ class PipelineController extends Controller
 {
     public function __invoke()
     {
-        $companyId = Auth::user()->company_id;
+        $user = Auth::user();
+        $companyId = $user->company_id;
+        $isPrivileged = $user->isPrivileged();
         
         $stages = PipelineStage::where('company_id', $companyId)
             ->orderBy('order')
             ->get();
             
-        $leads = Lead::where('company_id', $companyId)
-            ->get();
+        $leadQuery = Lead::where('company_id', $companyId);
+
+        if (!$isPrivileged) {
+            $leadQuery->where('user_id', $user->id);
+        }
+
+        $leads = $leadQuery->get();
 
         return Inertia::render('CRM::Pipeline', [
             'stages' => PipelineStageResource::collection($stages),
